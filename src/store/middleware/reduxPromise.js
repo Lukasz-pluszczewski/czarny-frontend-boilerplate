@@ -1,4 +1,6 @@
-export default function reduxPromiseMiddleware() {
+import apiClient from 'services/apiClient';
+
+export default function reduxPromiseMiddleware({getState, dispatch}) {
 	return next => action => {
 		const { promise, types, type, ...rest } = action;
 		if (!promise) {
@@ -15,7 +17,7 @@ export default function reduxPromiseMiddleware() {
     }
 
 		next({ ...rest, type: REQUEST });
-		return promise.then(
+		return promise({getState, dispatch, client: apiClient}).then(
 			result => next({ ...rest, result, type: SUCCESS }),
 			error => next({ ...rest, error, type: FAILURE })
 		);

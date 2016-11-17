@@ -7,6 +7,6 @@ import {
 export function exampleAction(name) {
   return {
     types: [EXAMPLE_ACTION, EXAMPLE_ACTION_SUCCESS, EXAMPLE_ACTION_ERROR],
-    promise: new Promise(resolve => resolve(name)),
+    promise: () => new Promise(resolve => resolve(name)),
   };
 }
