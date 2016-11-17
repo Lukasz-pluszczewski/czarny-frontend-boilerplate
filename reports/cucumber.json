@@ -1,0 +1,61 @@
+[
+  {
+    "elements": [
+      {
+        "id": "google;searching-google",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Searching Google",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I open Google's search page",
+            "result": {
+              "status": "passed",
+              "duration": 3126767568
+            },
+            "line": 5,
+            "match": {
+              "location": "/Users/adam/dev/sam-frontend/features/step_definitions/steps.js:2"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the title is \"Google\"",
+            "result": {
+              "status": "passed",
+              "duration": 11121844
+            },
+            "line": 6,
+            "match": {
+              "location": "/Users/adam/dev/sam-frontend/features/step_definitions/steps.js:8"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "the Google search form exists",
+            "result": {
+              "status": "passed",
+              "duration": 46450622
+            },
+            "line": 7,
+            "match": {
+              "location": "/Users/adam/dev/sam-frontend/features/step_definitions/steps.js:12"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "google",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Google",
+    "tags": [],
+    "uri": "/Users/adam/dev/sam-frontend/features/google.feature"
+  }
+]
