@@ -8,6 +8,7 @@ export default {
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
     modulesDirectories: [
+      'node_modules',
       'src',
     ],
   },

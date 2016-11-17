@@ -38,10 +38,22 @@ class ApiClient {
 
           if (res.ok) {
             logger.apiSuccess(`${method} request to "${request.url}" succeeded`, loggedData);
-            return resolve({ statusCode: res.statusCode, message: res.body ? res.body.message : null, body: res.body, res });
+            return resolve({
+              statusCode: res.statusCode,
+              message: res.body ? res.body.message : null,
+              body: res.body,
+              res,
+            });
           }
-          logger.apiError(`${method} request to "${request.url}" failed with${res ? '' : ' no'} code ${loggedData.responseStatus}`, loggedData);
-          return reject({ statusCode: res.statusCode, message: res.body ? res.body.message : null, res });
+          logger.apiError(
+            `${method} request to "${request.url}" failed with${res ? '' : ' no'} code ${loggedData.responseStatus}`,
+            loggedData
+          );
+          return reject({
+            statusCode: res.statusCode,
+            message: res.body ? res.body.message : null,
+            res,
+          });
         });
       }));
   }
@@ -55,7 +67,7 @@ class ApiClient {
    *
    * Remove it at your own risk.
    */
-  empty() {}
+  empty() {} // eslint-disable-line no-empty-function
 }
 
 const client = new ApiClient();

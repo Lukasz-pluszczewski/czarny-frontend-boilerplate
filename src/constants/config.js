@@ -9,6 +9,6 @@ export default {
   },
   debug: {
     varboseLog: true,
-    environment: 'development',
+    environment: process.env.NODE_ENV,
   },
 };

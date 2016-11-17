@@ -7,15 +7,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
 
-const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production'),
-  __DEV__: false,
-};
-
 export default {
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
     modulesDirectories: [
+      'node_modules',
       'src',
     ],
   },
@@ -37,7 +33,10 @@ export default {
     new webpack.optimize.OccurenceOrderPlugin(),
 
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
-    new webpack.DefinePlugin(GLOBALS),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      __DEV__: false,
+    }),
 
     // Generate an external css file with a hash in the filename
     new ExtractTextPlugin('[name].[contenthash].css'),

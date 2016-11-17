@@ -9,7 +9,7 @@ export default function exampleReducer(state = initialState.example, action) {
       return {
         ...state,
       };
-    case EXAMPLE_ACTION_SUCCESS:
+    case EXAMPLE_ACTION_SUCCESS: {
       logger.info('Example action success');
       const list = _.clone(state.list);
       list.push(action.result);
@@ -17,6 +17,7 @@ export default function exampleReducer(state = initialState.example, action) {
         ...state,
         list,
       };
+    }
     case EXAMPLE_ACTION_ERROR:
       logger.info('Example action error');
       return {
