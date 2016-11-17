@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import { IndexLink } from 'react-router';
 
 class AboutPage extends Component {
   static propTypes = {
@@ -8,6 +9,7 @@ class AboutPage extends Component {
   render() {
     return (
       <div>
+        <IndexLink to="/">back</IndexLink>
         <h1>About page</h1>
       </div>
     );

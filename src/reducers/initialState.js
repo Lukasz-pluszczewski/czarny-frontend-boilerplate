@@ -1,5 +1,7 @@
 export default {
-  example: {},
+  example: {
+    list: [],
+  },
   auth: {
     loggingIn: false,
     loginError: null,

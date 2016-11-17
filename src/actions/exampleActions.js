@@ -1,8 +1,12 @@
-import * as types from '../constants/actionTypes';
+import {
+  EXAMPLE_ACTION,
+  EXAMPLE_ACTION_SUCCESS,
+  EXAMPLE_ACTION_ERROR
+} from '../constants/actionTypes';
 
-export function exampleAction() {
+export function exampleAction(name) {
   return {
-    types: [types.EXAMPLE_ACTION, types.EXAMPLE_ACTION_SUCCESS, types.EXAMPLE_ACTION_FAIL],
-    promise: new Promise(resolve => resolve('someData')),
+    types: [EXAMPLE_ACTION, EXAMPLE_ACTION_SUCCESS, EXAMPLE_ACTION_ERROR],
+    promise: new Promise(resolve => resolve(name)),
   };
 }
