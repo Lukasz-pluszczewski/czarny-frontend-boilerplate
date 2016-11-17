@@ -1,0 +1,6 @@
+verbose: true
+instrumentation:
+  root: src
+  extensions:
+    - .js
+    - .jsx
