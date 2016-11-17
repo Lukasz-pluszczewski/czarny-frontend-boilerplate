@@ -8,6 +8,8 @@ export default function exampleReducer(state = initialState.example, action) {
       logger.info('Example action started');
       return {
         ...state,
+        isLoading: true,
+        error: null,
       };
     case EXAMPLE_ACTION_SUCCESS: {
       logger.info('Example action success');
@@ -15,6 +17,7 @@ export default function exampleReducer(state = initialState.example, action) {
       list.push(action.result);
       return {
         ...state,
+        isLoading: false,
         list,
       };
     }
@@ -22,6 +25,8 @@ export default function exampleReducer(state = initialState.example, action) {
       logger.info('Example action error');
       return {
         ...state,
+        isLoading: false,
+        error: 'Error'
       };
     default:
       return state;

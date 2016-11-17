@@ -1,5 +1,7 @@
 export default {
   example: {
+    isLoading: false,
+    error: null,
     list: [],
   },
   auth: {
