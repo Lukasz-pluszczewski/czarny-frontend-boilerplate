@@ -23,7 +23,7 @@
     "test": "mocha tools/testSetup.js \"./test/**/*.js\"",
     "test:cucumber": "./node_modules/.bin/nightwatch",
     "test:coverage": "babel-node ./node_modules/.bin/isparta cover _mocha -- --require ./tools/testSetup.js \"./test/**/*.js\" && open coverage/lcov-report/index.html",
-    "test:watch": "echo 'Test watch not yet implemented'"
+    "test:watch": "mocha tools/testSetup \"./test/**/*.js\" --watch"
   },
   "author": "Łukasz",
   "license": "MIT",
