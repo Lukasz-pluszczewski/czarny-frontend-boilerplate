@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "extends": [
+    "brainhub"
+  ],
+  "rules": {
+
+  },
+  "globals": {
+    "logger": true
+  }
+}
