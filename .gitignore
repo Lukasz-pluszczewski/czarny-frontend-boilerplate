@@ -35,3 +35,7 @@ node_modules
 
 # Mac files
 .DS_Store
+
+# Debug files
+selenium-debug.log
+.npm.debug
