@@ -8,5 +8,10 @@
   },
   "globals": {
     "logger": true
-  }
+  },
+  "settings": {
+    "import/resolve": {
+      "moduleDirectory": ["node_modules", "src"]
+    }
+  },
 }
