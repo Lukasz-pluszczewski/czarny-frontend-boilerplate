@@ -1,4 +1,4 @@
-# Slingshot!
+# Brainhub boilerplate!
 
 ## Get Started
 1. **Clone the project**. `git clone git@bitbucket.org:tapchan/frontend-boilerplate.git`.
