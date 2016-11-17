@@ -21,9 +21,9 @@
     "prebuild": "npm run clean-dist && npm run lint && npm run test",
     "build": "babel-node tools/build.js && npm run open:dist",
     "test": "NODE_PATH=src mocha tools/testSetup.js \"./test/**/*.js\"",
-    "test:cucumber": "./node_modules/.bin/nightwatch",
-    "test:coverage": "babel-node ./node_modules/.bin/isparta cover _mocha -- --require ./tools/testSetup.js \"./test/**/*.js\" && open coverage/lcov-report/index.html",
-    "test:watch": "mocha tools/testSetup \"./test/**/*.js\" --watch"
+    "test:cucumber": "NODE_PATH=src ./node_modules/.bin/nightwatch",
+    "test:coverage": "NODE_PATH=src babel-node ./node_modules/.bin/isparta cover _mocha -- --require ./tools/testSetup.js \"./test/**/*.js\" && open coverage/lcov-report/index.html",
+    "test:watch": "NODE_PATH=src mocha tools/testSetup \"./test/**/*.js\" --watch"
   },
   "author": "Łukasz",
   "license": "MIT",
