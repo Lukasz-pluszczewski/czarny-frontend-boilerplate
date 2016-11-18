@@ -26,7 +26,7 @@ export default function exampleReducer(state = initialState.example, action) {
       return {
         ...state,
         isLoading: false,
-        error: 'Error'
+        error: 'Error',
       };
     default:
       return state;
