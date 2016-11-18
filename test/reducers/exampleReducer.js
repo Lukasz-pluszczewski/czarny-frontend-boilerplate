@@ -5,7 +5,7 @@ import initialState from 'reducers/initialState';
 
 describe('exampleReducer', () => {
   it('should return initial state', () => {
-    expect(exampleReducer(undefined, {})).to.be.deep.equal(initialState.example);
+    expect(exampleReducer(undefined, {})).to.be.deep.equal(initialState.example); // eslint-disable-line no-undefined
   });
   it('should set isLoading to true', () => {
     const action = {

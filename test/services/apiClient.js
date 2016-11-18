@@ -1,7 +1,5 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
 import { getFactory, service } from 'dinja';
-import React from 'react';
 import nock from 'nock';
 import config from 'constants/config';
 import ApiClient from 'services/apiClient';
@@ -33,7 +31,6 @@ const responseWrong = {
 
 // mocked http endpoints
 nock(url)
-  .log(console.log)
   .defaultReplyHeaders(responseHeaders)
 
   .get(pathOk)
@@ -61,7 +58,7 @@ nock(url)
 
 describe('Api client', () => {
   @service('Storage')
-  class mockedStorage {
+  class mockedStorage { // eslint-disable-line no-unused-vars
     save(name, data) {
       return 'set';
     }
@@ -73,8 +70,8 @@ describe('Api client', () => {
     }
   }
   const apiClient = getFactory().create(ApiClient);
-  it('should send GET request with params and return a response', (done) => {
-    apiClient.get(pathOk, {params}).then(result => {
+  it('should send GET request with params and return a response', done => {
+    apiClient.get(pathOk, { params }).then(result => {
       expect(result.statusCode).to.be.equal(200);
       expect(result.body).to.be.deep.equal(responseOk);
       expect(result).to.have.property('res');
@@ -86,8 +83,8 @@ describe('Api client', () => {
       done(new Error(err.message));
     });
   });
-  it('should send POST request with params and body and return a response', (done) => {
-    apiClient.post(pathOk, {params, data: body}).then(result => {
+  it('should send POST request with params and body and return a response', done => {
+    apiClient.post(pathOk, { params, data: body }).then(result => {
       expect(result.statusCode).to.be.equal(201);
       expect(result.body).to.be.deep.equal(responseOk);
       expect(result).to.have.property('res');
@@ -99,8 +96,8 @@ describe('Api client', () => {
       done(new Error(err.message));
     });
   });
-  it('should send PUT request with params and return a response', (done) => {
-    apiClient.put(pathOk, {params, data: body}).then(result => {
+  it('should send PUT request with params and return a response', done => {
+    apiClient.put(pathOk, { params, data: body }).then(result => {
       expect(result.statusCode).to.be.equal(200);
       expect(result.body).to.be.deep.equal(responseOk);
       expect(result).to.have.property('res');
@@ -113,8 +110,8 @@ describe('Api client', () => {
     });
   });
 
-  it('should send DELETE request with params and return a response', (done) => {
-    apiClient.del(pathOk, {params}).then(result => {
+  it('should send DELETE request with params and return a response', done => {
+    apiClient.del(pathOk, { params }).then(result => {
       expect(result.statusCode).to.be.equal(200);
       expect(result.body).to.be.deep.equal(responseOk);
       expect(result).to.have.property('res');
@@ -127,8 +124,8 @@ describe('Api client', () => {
     });
   });
 
-  it('should send headers with GET request and return a response', (done) => {
-    apiClient.get(pathOk, {headers}).then(result => {
+  it('should send headers with GET request and return a response', done => {
+    apiClient.get(pathOk, { headers }).then(result => {
       expect(result.statusCode).to.be.equal(200);
       expect(result.body).to.be.deep.equal(responseOk);
       expect(result).to.have.property('res');
@@ -141,7 +138,7 @@ describe('Api client', () => {
     });
   });
 
-  it('should send GET request to wrong path and return error', (done) => {
+  it('should send GET request to wrong path and return error', done => {
     apiClient.get(pathWrong).then(() => {
       done(new Error('Wrong request has been resolved'));
     }, result => {
@@ -153,7 +150,7 @@ describe('Api client', () => {
     });
   });
 
-  it('should send GET request to nonexisting path and return service unavailable 503 error', (done) => {
+  it('should send GET request to nonexisting path and return service unavailable 503 error', done => {
     apiClient.get('non-existing-path').then(() => {
       done(new Error('Wrong request has been resolved'));
     }, result => {
@@ -164,6 +161,4 @@ describe('Api client', () => {
       done();
     });
   });
-
-
 });

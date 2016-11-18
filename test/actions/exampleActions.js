@@ -4,18 +4,18 @@ import { exampleAction } from 'actions/exampleActions';
 import {
   EXAMPLE_ACTION,
   EXAMPLE_ACTION_SUCCESS,
-  EXAMPLE_ACTION_ERROR
+  EXAMPLE_ACTION_ERROR,
 } from 'constants/actionTypes';
 
 chai.use(chaiAsPromised);
 
 describe('ExampleAction creator', () => {
-  it('should create example action', (done) => {
+  it('should create example action', done => {
     const name = 'testName';
     const actionTypes = [
       EXAMPLE_ACTION,
       EXAMPLE_ACTION_SUCCESS,
-      EXAMPLE_ACTION_ERROR
+      EXAMPLE_ACTION_ERROR,
     ];
     const action = exampleAction(name);
 
