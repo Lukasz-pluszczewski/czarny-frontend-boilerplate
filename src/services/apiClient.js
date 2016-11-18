@@ -1,17 +1,21 @@
+import _ from 'lodash';
 import superagent from 'superagent';
-import storage from '../helpers/storage';
+import { service, dependencies } from 'dinja';
 import config from '../constants/config';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(path) {
-  return `${config.apiClient.protocol}://${config.apiClient.host}:${config.apiClient.port}/${path.trim('/')}`;
+  return `${config.apiClient.protocol}://${config.apiClient.host}:${config.apiClient.port}/${path.replace(/^\//, '')}`;
 }
 
-class ApiClient {
-  constructor() {
+@dependencies(['Storage'])
+@service('ApiClient')
+export default class ApiClient {
+  constructor(Storage) {
+    this.storage = Storage;
     methods.forEach(method =>
-      this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
+      this[method] = (path, { params, data, headers } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
 
         request.timeout(5000);
@@ -23,36 +27,50 @@ class ApiClient {
           request.send(data);
         }
 
-        request.set(config.authentication.header, storage.load(config.authentication.header));
+        if (config.authentication && config.authentication.header) {
+          request.set(config.authentication.header, this.storage.load(config.authentication.header));
+        }
+
+        if (_.isPlainObject(headers)) {
+          _.forEach(headers, (headerValue, headerName) => {
+            request.set(headerName, headerValue);
+          });
+        }
 
         request.end((err, res) => {
-          const loggedData = {
-            requestParams: params,
-            requestData: data,
-            requestHeaders: request._header,
-            responseStatus: res && res.statusCode ? `${res.statusCode} - ${res.statusText}` : 'No response',
-            responseBody: res ? res.body : 'No response',
-            response: res || 'No response',
-            request,
-          };
+          if (res) {
+            const loggedData = {
+              requestParams: params,
+              requestData: data,
+              requestHeaders: request._header,
+              responseStatus: res.statusCode ? `${res.statusCode} - ${res.statusText}` : 'No status code',
+              responseBody: res.body,
+              response: res,
+              request,
+            };
 
-          if (res.ok) {
-            logger.apiSuccess(`${method} request to "${request.url}" succeeded`, loggedData);
-            return resolve({
+            if (res.ok) {
+              logger.apiSuccess(`${method} request to "${request.url}" succeeded`, loggedData);
+              return resolve({
+                statusCode: res.statusCode,
+                body: res.body,
+                res,
+              });
+            }
+            logger.apiError(
+              `${method} request to "${request.url}" failed with code ${loggedData.responseStatus}`,
+              loggedData
+            );
+            return reject({
               statusCode: res.statusCode,
               message: res.body ? res.body.message : null,
-              body: res.body,
               res,
             });
           }
-          logger.apiError(
-            `${method} request to "${request.url}" failed with${res ? '' : ' no'} code ${loggedData.responseStatus}`,
-            loggedData
-          );
+          logger.apiError(`${method} request to "${request.url}" failed with no response`);
           return reject({
-            statusCode: res.statusCode,
-            message: res.body ? res.body.message : null,
-            res,
+            statusCode: 503,
+            message: 'Service unavailable',
           });
         });
       }));
@@ -69,7 +87,3 @@ class ApiClient {
    */
   empty() {} // eslint-disable-line no-empty-function
 }
-
-const client = new ApiClient();
-
-export default client;

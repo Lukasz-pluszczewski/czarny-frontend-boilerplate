@@ -4,6 +4,7 @@ import storage from '../helpers/storage';
 
 const storedTokenName = config.authentication.header;
 
+// change it to class and add to dinja as a service
 const authService = apiClient => ({
   loginFromCredentials(username, password) {
     return apiClient.post('authenticate', { data: { username, password } })
