@@ -10,6 +10,6 @@ module.exports = function() {
   });
 
   this.Then(/^the Google search form exists$/, client => {
-    client.assert.visible('input[name="que"]');
+    client.assert.visible('input[name="q"]');
   });
 };
