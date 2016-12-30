@@ -8,7 +8,7 @@ const authService = apiClient => ({
   loginFromCredentials(username, password) {
     return apiClient.post('login', { data: { username, password }})
       .then(result => {
-        if (result.bod.token) {
+        if (result.body.token) {
           logger.info('Logged in successfully');
           storage.save(storedTokenName, result.body.token);
         }
@@ -22,59 +22,24 @@ const authService = apiClient => ({
       logger.info('Cannot log in from token. No token saved in storage');
       return Promise.reject('No token saved')
     }
-
-
-    return new Promise((resolve, reject) => {
-      const token = storage.load(storedTokenName);
-      if (!token) {
-        logger.info(`Cannot log in from token. No token saved locally`);
-        return reject('No token saved');
-      }
-      apiClient.get('auth-check')
-        .then(result => {
-          if (result.body.Token) {
-            logger.info('Logged in from token');
-            storage.save(storedTokenName, result.body.Token);
-            return resolve(result.body);
-          }
-          logger.warn(`Logged in from token failed. Got message: "${result.message}"`, result.body);
-          reject(result.message);
-          storage.remove(storedTokenName);
-          browserHistory.push('/login');
-        }, err => {
-          logger.error(`Logged in from token failed with status ${err.statusCode} - "${err.res.statusText}". Got error: "${err.message}"`, err);
-          storage.remove(storedTokenName);
-          browserHistory.push('/login');
-          reject(err.message);
-        });
-    });
-  },
-  refreshToken() {
-    return new Promise((resolve, reject) => {
-      const token = storage.load(storedTokenName);
-      if (!token) {
-        logger.info(`Cannot refresh token. No token saved locally`);
-        return reject('No token saved');
-      }
-      apiClient.get('refreshtoken')
-        .then(result => {
-          if (result.body.Token) {
-            logger.info(`Refreshed token for user: ${result.body.user.name}`);
-            storage.save(storedTokenName, result.body.Token);
-            resolve(result.body);
-          } else {
-            logger.info(`Refreshing token failed. Got message: "${result.message}"`, result.body);
-            storage.remove(storedTokenName);
-            browserHistory.push('/login');
-            reject(result.message);
-          }
-        }, err => {
-          logger.error(`Refreshing token failed with status ${err.statusCode} - "${err.res.statusText}". Got error: "${err.message}"`);
-          storage.remove(storedTokenName);
-          browserHistory.push('/login');
-          reject(err.message);
-        });
-    });
+    apiClient.get('auth-check')
+      .then(result => {
+        if (result.body.token) {
+          logger.info('Logged in from token');
+          storage.save(storedTokenName, result.body.token);
+          return result.body;
+        }
+        logger.warn(`Logged in from token failed. Got message: "${result.body.message}"`, result.body);
+        storage.remove(storedTokenName);
+        browserHistory.push('/login');
+        return Promise.reject(result.body.message);
+      })
+      .catch(error => {
+        logger.error(`Logged in from token failed with status ${err.statusCode} - "${err.res.statusText}". Got error: "${err.message}"`, err);
+        storage.remove(storedTokenName);
+        browserHistory.push('/login');
+        return error.message;
+      });
   },
   logout() {
     logger.info('Logged out');
