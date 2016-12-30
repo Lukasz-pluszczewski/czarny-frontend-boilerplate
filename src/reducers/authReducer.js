@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
   LOGIN,
   LOGIN_SUCCESS,
@@ -27,7 +26,6 @@ const excludedActions = [
 ];
 
 export default function auth(state = initialState.auth, action) {
-  let newState;
   switch (action.type) {
     case LOGIN:
       return {
@@ -106,22 +104,21 @@ export default function auth(state = initialState.auth, action) {
         user: null,
         isAuthenticated: false,
       };
-    default:
-      newState = _.clone(state);
-      if (!~excludedActions.indexOf(action.type)) {
-        newState = {
-          ...newState,
-          lastActionTimestamp: Date.now(),
-        };
-      }
+    default: {
+      const actionTimestamp = !~excludedActions.indexOf(action.type) ? Date.now() : state.lastActionTimestamp;
       if (action.error && action.error.statusCode === 401) {
         return {
-          ...newState,
+          ...state,
           token: null,
           user: null,
           isAuthenticated: false,
+          lastActionTimestamp: actionTimestamp,
         };
       }
-      return newState;
+      return {
+        ...state,
+        lastActionTimestamp: actionTimestamp,
+      };
+    }
   }
 }

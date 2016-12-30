@@ -1,10 +1,9 @@
 import { expect } from 'chai';
-import { getFactory, service } from 'dinja';
 import nock from 'nock';
 import config from 'constants/config';
-import ApiClient from 'services/apiClient';
+import apiClient from 'services/ApiClient';
 
-const url = `${config.apiClient.protocol}://${config.apiClient.host}:${config.apiClient.port}/`;
+const url = `${config.apiClient.protocol}://${config.apiClient.host}:${config.apiClient.port}/v1/`;
 const pathOk = '/testPath';
 const pathWrong = '/testPathWrong';
 
@@ -57,29 +56,17 @@ nock(url)
   .reply(404, responseWrong);
 
 describe('Api client', () => {
-  @service('Storage')
-  class mockedStorage { // eslint-disable-line no-unused-vars
-    save(name, data) {
-      return 'set';
-    }
-    load(name) {
-      return 'load';
-    }
-    remove(name) {
-      return 'remove';
-    }
-  }
-  const apiClient = getFactory().create(ApiClient);
   it('should send GET request with params and return a response', done => {
     apiClient.get(pathOk, { params }).then(result => {
       expect(result.statusCode).to.be.equal(200);
       expect(result.body).to.be.deep.equal(responseOk);
+      expect(result).to.have.property('title');
       expect(result).to.have.property('res');
       expect(result.res).to.be.an('object');
       expect(result.res.headers).to.be.an('object');
       expect(result.res.headers['response-header']).to.be.equal(responseHeaders['response-header']);
       done();
-    }, err => {
+    }).catch(err => {
       done(new Error(err.message));
     });
   });
@@ -87,12 +74,13 @@ describe('Api client', () => {
     apiClient.post(pathOk, { params, data: body }).then(result => {
       expect(result.statusCode).to.be.equal(201);
       expect(result.body).to.be.deep.equal(responseOk);
+      expect(result).to.have.property('title');
       expect(result).to.have.property('res');
       expect(result.res).to.be.an('object');
       expect(result.res.headers).to.be.an('object');
       expect(result.res.headers['response-header']).to.be.equal(responseHeaders['response-header']);
       done();
-    }, err => {
+    }).catch(err => {
       done(new Error(err.message));
     });
   });
@@ -100,12 +88,13 @@ describe('Api client', () => {
     apiClient.put(pathOk, { params, data: body }).then(result => {
       expect(result.statusCode).to.be.equal(200);
       expect(result.body).to.be.deep.equal(responseOk);
+      expect(result).to.have.property('title');
       expect(result).to.have.property('res');
       expect(result.res).to.be.an('object');
       expect(result.res.headers).to.be.an('object');
       expect(result.res.headers['response-header']).to.be.equal(responseHeaders['response-header']);
       done();
-    }, err => {
+    }).catch(err => {
       done(new Error(err.message));
     });
   });
@@ -114,12 +103,13 @@ describe('Api client', () => {
     apiClient.del(pathOk, { params }).then(result => {
       expect(result.statusCode).to.be.equal(200);
       expect(result.body).to.be.deep.equal(responseOk);
+      expect(result).to.have.property('title');
       expect(result).to.have.property('res');
       expect(result.res).to.be.an('object');
       expect(result.res.headers).to.be.an('object');
       expect(result.res.headers['response-header']).to.be.equal(responseHeaders['response-header']);
       done();
-    }, err => {
+    }).catch(err => {
       done(new Error(err.message));
     });
   });
@@ -128,34 +118,37 @@ describe('Api client', () => {
     apiClient.get(pathOk, { headers }).then(result => {
       expect(result.statusCode).to.be.equal(200);
       expect(result.body).to.be.deep.equal(responseOk);
+      expect(result).to.have.property('title');
       expect(result).to.have.property('res');
       expect(result.res).to.be.an('object');
       expect(result.res.headers).to.be.an('object');
       expect(result.res.headers['response-header']).to.be.equal(responseHeaders['response-header']);
       done();
-    }, err => {
+    }).catch(err => {
       done(new Error(err.message));
     });
   });
 
   it('should send GET request to wrong path and return error', done => {
     apiClient.get(pathWrong).then(() => {
-      done(new Error('Wrong request has been resolved'));
+      done(new Error('Wrong request has been resolved but should have been rejected'));
     }, result => {
       expect(result.statusCode).to.be.equal(404);
       expect(result.message).to.be.deep.equal(responseWrong.message);
+      expect(result).to.have.property('title');
       expect(result).to.have.property('res');
       expect(result.res).to.be.an('object');
       done();
     });
   });
 
-  it('should send GET request to nonexisting path and return service unavailable 503 error', done => {
+  it('should send GET request to path that does not work and return service unavailable 503 error', done => {
     apiClient.get('non-existing-path').then(() => {
-      done(new Error('Wrong request has been resolved'));
+      done(new Error('Wrong request has been resolved but should have been rejected'));
     }, result => {
       expect(result.statusCode).to.be.equal(503);
       expect(result.message).to.be.equal('Service unavailable');
+      expect(result).to.have.property('title');
       expect(result).to.not.have.property('body');
       expect(result).to.not.have.property('res');
       done();

@@ -4,24 +4,26 @@ import storage from '../helpers/storage';
 
 const storedTokenName = config.authentication.header;
 
-// change it to class and add to dinja as a service
 const authService = apiClient => ({
   loginFromCredentials(username, password) {
-    return apiClient.post('authenticate', { data: { username, password } })
+    return apiClient.post('login', { data: { username, password }})
       .then(result => {
-        if (result.body.Token) {
-          logger.info('logged in');
-          storage.save(storedTokenName, result.body.Token);
-          return Promise.resolve(result.body);
+        if (result.bod.token) {
+          logger.info('Logged in successfully');
+          storage.save(storedTokenName, result.body.token);
         }
-        logger.warn(`POST to 'authenticate' finished successfully, however token was not in the response. Got message: "${result.message}"`, result);
-        return Promise.reject(result.message);
-      }, err => {
-        logger.error(`Logging in failed with status ${err.statusCode} - "${err.res.statusText}". Got error "${err.message}"`);
-        return Promise.reject(err.message);
+        logger.warn(`POST to 'login' finished successfully, however token was not in the response. Got message: "${result.body.message}`, result);
+        return Promise.reject(result.body.message);
       });
   },
   loginFromToken() {
+    const token = storage.load(storedTokenName);
+    if (!token) {
+      logger.info('Cannot log in from token. No token saved in storage');
+      return Promise.reject('No token saved')
+    }
+
+
     return new Promise((resolve, reject) => {
       const token = storage.load(storedTokenName);
       if (!token) {
