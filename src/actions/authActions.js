@@ -26,13 +26,6 @@ export function loginFromToken() {
   };
 }
 
-export function refreshToken() {
-  return {
-    types: [REFRESH_TOKEN, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_ERROR],
-    promise: ({ client }) => authService(client).refreshToken(),
-  };
-}
-
 export function logout() {
   return {
     type: LOGOUT,

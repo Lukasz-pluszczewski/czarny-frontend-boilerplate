@@ -1,4 +1,6 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import { logout } from 'actions/authActions';
 import { Link, IndexLink } from 'react-router';
 
 class NavPanel extends Component {
@@ -11,10 +13,16 @@ class NavPanel extends Component {
       <div>
         <div>
           <IndexLink to="/">Home</IndexLink>
-          <span style={ { padding: '0 5px' } }>|</span>
+          <span style={{ padding: '0 5px' }}>|</span>
           <Link to="about">about</Link>
-          <span style={ { padding: '0 5px' } }>|</span>
+          <span style={{ padding: '0 5px' }}>|</span>
           <Link to="private">private page</Link>
+          {this.props.user ? <span>
+            <span style={{ padding: '0 50px' }}></span>
+            <span onClick={e => this.props.logout()} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+              Logout {this.props.user.name} ({this.props.user.role})
+            </span>
+          </span> : null}
         </div>
         <div>
           { this.props.children }
@@ -24,4 +32,11 @@ class NavPanel extends Component {
   }
 }
 
-export default NavPanel;
+export default connect(
+  state => ({
+    user: state.auth.user,
+  }),
+  {
+    logout
+  }
+)(NavPanel);

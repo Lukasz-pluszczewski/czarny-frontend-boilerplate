@@ -23,7 +23,7 @@ const authService = apiClient => ({
       logger.info('Cannot log in from token. No token saved in storage');
       return Promise.reject('No token saved');
     }
-    apiClient.get('auth-check')
+    return apiClient.get('auth-check')
       .then(result => {
         if (result.body.token) {
           logger.info('Logged in from token');
