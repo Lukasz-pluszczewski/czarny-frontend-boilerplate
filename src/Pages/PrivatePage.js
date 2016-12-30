@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import { IndexLink } from 'react-router';
 
 class AboutPage extends Component {
   static propTypes = {
@@ -8,7 +9,8 @@ class AboutPage extends Component {
   render() {
     return (
       <div>
-        <h1>About page</h1>
+        <h1>This is private page</h1>
+        <p>Not everyone has access!</p>
       </div>
     );
   }

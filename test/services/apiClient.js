@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import nock from 'nock';
 import config from 'constants/config';
-import apiClient from 'services/ApiClient';
+import apiClient from 'services/apiClient';
 
 const url = `${config.apiClient.protocol}://${config.apiClient.host}:${config.apiClient.port}/v1/`;
 const pathOk = '/testPath';

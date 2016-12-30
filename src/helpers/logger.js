@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import _ from 'lodash';
-import config from '../constants/config';
+import config from 'constants/config';
 
-const { environment, verboseLog } = config.debug;
+const {environment, verboseLog} = config.debug;
 
 const css = {
   log: 'color: green',
@@ -25,8 +25,8 @@ const logger = (...args) => logger.debug(...args);
 logger.logstyled = (logtype, style, addBacktrace, ...argums) => {
   let args = argums;
   if (environment !== 'development') {
- return;
-}
+    return;
+  }
   const groupArgs = [];
   if (verboseLog) {
     groupArgs.push('%c' + _.head(args));

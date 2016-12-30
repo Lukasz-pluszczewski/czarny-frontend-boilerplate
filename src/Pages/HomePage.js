@@ -1,13 +1,12 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { exampleAction } from '../actions/exampleActions';
 
 // Example of connected react component
 class HomePage extends Component {
   static propTypes = {
     list: PropTypes.array, // props passed with connect() function are added to HomePage component
-    add: PropTypes.func,
+    exampleAction: PropTypes.func,
   };
   state = {
     input: '',
@@ -19,19 +18,19 @@ class HomePage extends Component {
     });
   }
 
-  handleSubmit() {
-    this.props.add(this.state.input);
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.exampleAction(this.state.input);
   }
 
   render() {
     return (
       <div>
-        <div>
-          <Link to="about">about</Link>
-        </div>
         <h1>Homepage</h1>
-        <input value={this.state.input} onChange={e => this.handleChange(e)} placeholder="Enter name" />
-        <button onClick={e => this.handleSubmit()}>add</button>
+        <form onSubmit={e => this.handleSubmit(e)}>
+          <input value={this.state.input} onChange={e => this.handleChange(e)} placeholder="Enter name" />
+          <button type="submit">add</button>
+        </form>
         <ul>
           {this.props.list.map((element, key) => <li key={key}>{element}</li>)}
         </ul>
@@ -46,8 +45,8 @@ export default connect(
   state => ({
     list: state.example.list,
   }),
-  // second argument is a function that gets store's dispatch and returns object with props (most likely with functions)
-  dispatch => ({
-    add: name => dispatch(exampleAction(name)),
-  })
+  // second argument is an object with actionCreators that will be mapped to dispatching functions added to props
+  {
+    exampleAction,
+  }
 )(HomePage);

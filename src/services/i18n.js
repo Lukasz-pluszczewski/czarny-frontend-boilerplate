@@ -4,7 +4,7 @@ import defaultTranslations from 'constants/translations';
 
 /**
  * Creates translator and sets given translations
- * @param translations
+ * @param {object} translations
  * @return {object} translator
  */
 export const createTranslator = translations => ({
@@ -12,7 +12,7 @@ export const createTranslator = translations => ({
 
   /**
    * Sets translations object
-   * @param source
+   * @param {object} source
    * @return {void}
    */
   setTranslations(source) {
@@ -22,7 +22,7 @@ export const createTranslator = translations => ({
   /**
    * Returns part of the translations from given namespacePath
    * @param {string} namespacePath
-   * @returns {object} part of translations from given namespacePath
+   * @return {object} part of translations from given namespacePath
    */
   getNamespacedTranslations(namespacePath) {
     let namespace = this.translations;
@@ -48,7 +48,7 @@ export const createTranslator = translations => ({
   /**
    * Translates given path
    * @param {array<string>} paths all params should be non empty string - other types will be ignored
-   * @returns {string|function} translated text or path when not found or namespaced translate function if there is an object in given path
+   * @return {string|function} translated text or path when not found or namespaced translate function if there is an object in given path
    */
   translate(...paths) {
     const filteredPath = _.filter(paths, path => _.isString(path) && path);
@@ -56,7 +56,7 @@ export const createTranslator = translations => ({
       throw new Error(config.errors.i18n.PathNotProvided);
     }
     const joinedPath = filteredPath.join('.');
-    let result = _.get(this.translations, joinedPath, false);
+    const result = _.get(this.translations, joinedPath, false);
     if (result === false) {
       logger.warn(config.errors.i18n.TranslationNotFound, joinedPath);
       return joinedPath;
@@ -71,4 +71,4 @@ export const createTranslator = translations => ({
   },
 });
 
-export const translator = createTranslator();
+export default createTranslator(defaultTranslations);

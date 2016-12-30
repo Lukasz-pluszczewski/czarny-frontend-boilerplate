@@ -8,7 +8,7 @@ const exampleTranslations = {
     },
     subNamespace12: {
       text: '1,12text',
-    }
+    },
   },
   namespace2: {
     subNamespace21: {
@@ -22,7 +22,6 @@ describe('i18n', () => {
     const translator = createTranslator();
     translator.setTranslations(exampleTranslations);
     expect(translator.translations).to.be.deep.equal(exampleTranslations);
-
   });
   it('should get translator that translate correct paths', () => {
     const translator = createTranslator(exampleTranslations);

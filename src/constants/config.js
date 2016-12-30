@@ -1,7 +1,7 @@
 export default {
   apiClient: {
     host: 'localhost',
-    port: '3030',
+    port: '8080',
     protocol: 'http',
     apiVersion: '1',
   },
@@ -16,7 +16,7 @@ export default {
     authentication: {
       noTokenSaved: {
         code: 0,
-        message: 'No token saved'
+        message: 'No token saved',
       },
     },
     i18n: {
@@ -40,6 +40,6 @@ export default {
         code: 0,
         message: 'Corrupted translations',
       },
-    }
-  }
+    },
+  },
 };
