@@ -2,11 +2,28 @@ import _ from 'lodash';
 import config from 'constants/config';
 import defaultTranslations from 'constants/translations';
 
+/**
+ * Creates translator and sets given translations
+ * @param translations
+ * @return {object} translator
+ */
 export const createTranslator = translations => ({
   translations: translations || defaultTranslations, // change default translations here or by using setTranslations method
+
+  /**
+   * Sets translations object
+   * @param source
+   * @return {void}
+   */
   setTranslations(source) {
     this.translations = source;
   },
+
+  /**
+   * Returns part of the translations from given namespacePath
+   * @param {string} namespacePath
+   * @returns {object} part of translations from given namespacePath
+   */
   getNamespacedTranslations(namespacePath) {
     let namespace = this.translations;
     if (_.isString(namespacePath) && namespacePath) {
@@ -18,9 +35,21 @@ export const createTranslator = translations => ({
     }
     return namespace;
   },
+
+  /**
+   * Returns new instance of translator with part of the translations from given namespacePath
+   * @param {string} namespacePath
+   * @return {object} translator
+   */
   namespace(namespacePath) {
     return createTranslator(this.getNamespacedTranslations(namespacePath));
   },
+
+  /**
+   * Translates given path
+   * @param {array<string>} paths all params should be non empty string - other types will be ignored
+   * @returns {string|function} translated text or path when not found or namespaced translate function if there is an object in given path
+   */
   translate(...paths) {
     const filteredPath = _.filter(paths, path => _.isString(path) && path);
     if (!filteredPath.length) {
