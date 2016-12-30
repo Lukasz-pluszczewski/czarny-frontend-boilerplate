@@ -3,6 +3,7 @@ export default {
     host: 'localhost',
     port: '3030',
     protocol: 'http',
+    apiVersion: '1',
   },
   authentication: {
     header: 'jwt',
