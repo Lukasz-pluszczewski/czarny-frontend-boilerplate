@@ -7,9 +7,6 @@ import {
   LOGIN_FROM_TOKEN,
   LOGIN_FROM_TOKEN_SUCCESS,
   LOGIN_FROM_TOKEN_ERROR,
-  REFRESH_TOKEN,
-  REFRESH_TOKEN_SUCCESS,
-  REFRESH_TOKEN_ERROR,
 } from '../constants/actionTypes';
 
 export function login(username, password) {

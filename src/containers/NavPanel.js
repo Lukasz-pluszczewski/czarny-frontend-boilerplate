@@ -6,6 +6,8 @@ import { Link, IndexLink } from 'react-router';
 class NavPanel extends Component {
   static propTypes = {
     children: PropTypes.element,
+    user: PropTypes.object,
+    logout: PropTypes.function,
   };
 
   render() {
@@ -37,6 +39,6 @@ export default connect(
     user: state.auth.user,
   }),
   {
-    logout
+    logout,
   }
 )(NavPanel);

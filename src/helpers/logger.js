@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import config from 'constants/config';
 
-const {environment, verboseLog} = config.debug;
+const { environment, verboseLog } = config.debug;
 
 const css = {
   log: 'color: green',

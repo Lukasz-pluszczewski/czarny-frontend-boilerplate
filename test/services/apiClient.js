@@ -58,7 +58,7 @@ nock(url)
   .reply(404, responseWrong);
 
 describe('Api client', () => {
-  sinon.stub(storage, 'load', () => {});
+  sinon.stub(storage, 'load', () => {}); // eslint-disable-line no-empty-function
   it('should send GET request with params and return a response', done => {
     apiClient.get(pathOk, { params }).then(result => {
       expect(result.statusCode).to.be.equal(200);
