@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 import nock from 'nock';
+import sinon from 'sinon';
 import config from 'constants/config';
 import apiClient from 'services/apiClient';
+import storage from 'helpers/storage';
 
 const url = `${config.apiClient.protocol}://${config.apiClient.host}:${config.apiClient.port}/v1/`;
 const pathOk = '/testPath';
@@ -56,6 +58,7 @@ nock(url)
   .reply(404, responseWrong);
 
 describe('Api client', () => {
+  sinon.stub(storage, 'load', () => {});
   it('should send GET request with params and return a response', done => {
     apiClient.get(pathOk, { params }).then(result => {
       expect(result.statusCode).to.be.equal(200);
