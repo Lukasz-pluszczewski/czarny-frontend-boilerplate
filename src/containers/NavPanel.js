@@ -7,7 +7,7 @@ class NavPanel extends Component {
   static propTypes = {
     children: PropTypes.element,
     user: PropTypes.object,
-    logout: PropTypes.function,
+    logout: PropTypes.func,
   };
 
   render() {
