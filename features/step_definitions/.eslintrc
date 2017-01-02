@@ -2,4 +2,8 @@
   rules: {
     'new-cap': 0,
   },
+  globals: {
+    browser: true,
+    expect: true,
+  }
 }
