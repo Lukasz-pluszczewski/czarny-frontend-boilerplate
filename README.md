@@ -1,4 +1,4 @@
-# Brainhub boilerplate! ![codeship](https://codeship.com/projects/499151f0-c5df-0134-9059-36bb47f4d7d1/status?branch=master)
+# Brainhub boilerplate!
 
 ## Get Started
 1. **Clone the project**. `git clone git@bitbucket.org:tapchan/frontend-boilerplate.git`.
