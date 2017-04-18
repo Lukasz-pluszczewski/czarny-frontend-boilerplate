@@ -53,7 +53,7 @@ export default {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+      sourceMap: false,
     }),
   ],
   module: {
@@ -149,7 +149,7 @@ export default {
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: true,
+                sourceMap: false,
               },
             },
           ],
