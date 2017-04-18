@@ -59,82 +59,102 @@ export default {
   module: {
     rules: [
       { test: /\.jsx?$/, exclude: /node_modules/, use: ['babel-loader'] },
-      { test: /\.eot(\?v=\d+.\d+.\d+)?$/, use: [
-        {
-          loader: 'url-loader',
-          options: {
-            name: '[name].[ext]',
-          },
-        },
-      ] },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            mimetype: 'application/font-woff',
-            name: '[name].[ext]',
-          },
-        },
-      ] },
-      { test: /\.ttf(\?v=\d+.\d+.\d+)?$/, use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            mimetype: 'application/octet-stream',
-            name: '[name].[ext]',
-          },
-        },
-      ] },
-      { test: /\.svg(\?v=\d+.\d+.\d+)?$/, use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            mimetype: 'image/svg+xml',
-            name: '[name].[ext]',
-          },
-        },
-      ] },
-      { test: /\.(jpe?g|png|gif)$/i, use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
-        },
-      ] },
-      { test: /\.ico$/, use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
-        },
-      ] },
-      { test: /(\.css|\.scss)$/, use: ExtractTextPlugin.extract({
+      {
+        test: /\.eot(\?v=\d+.\d+.\d+)?$/,
         use: [
           {
-            loader: 'css-loader',
+            loader: 'url-loader',
             options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [autoprefixer],
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
+              name: '[name].[ext]',
             },
           },
         ],
-      }) },
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              mimetype: 'application/font-woff',
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.ttf(\?v=\d+.\d+.\d+)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              mimetype: 'application/octet-stream',
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
+      { test: /\.svg(\?v=\d+.\d+.\d+)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              mimetype: 'image/svg+xml',
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.ico$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /(\.css|\.scss)$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: false,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [autoprefixer],
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        }),
+      },
     ],
   },
 };
