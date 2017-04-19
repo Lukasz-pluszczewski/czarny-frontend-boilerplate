@@ -46,6 +46,7 @@ const authService = apiClient => ({
     logger.info('Logged out');
     storage.remove(storedTokenName);
     browserHistory.push('/login');
+    return Promise.resolve();
   },
 });
 
