@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { login, loginFromToken } from 'actions/authActions';
@@ -9,7 +10,7 @@ class Login extends Component {
     isAuthenticated: PropTypes.bool,
     location: PropTypes.object,
     user: PropTypes.object,
-    loginError: PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.object]),
+    loginError: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     triedToLogFromToken: PropTypes.bool,
     login: PropTypes.func,
     loginFromToken: PropTypes.func,
