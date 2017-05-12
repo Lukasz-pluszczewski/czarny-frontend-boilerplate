@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import superagent from 'superagent';
-import storage from 'helpers/storage';
+import storage from 'services/storage';
 import config from 'constants/config';
 
 const ApiClient = {
