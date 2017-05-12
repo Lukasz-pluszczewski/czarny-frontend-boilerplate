@@ -36,7 +36,7 @@ const authService = apiClient => ({
         return Promise.reject(result.body.message);
       })
       .catch(error => {
-        logger.error(`Logged in from token failed with status ${error.statusCode} - "${error.res.statusText}". Got erroror: "${error.message}"`, error);
+        logger.error(`Logged in from token failed with status ${error.statusCode} - "${error.res.statusText}". Got error: "${error.message}"`, error);
         storage.remove(storedTokenName);
         browserHistory.push('/login');
         return Promise.reject(error.message);
@@ -46,6 +46,7 @@ const authService = apiClient => ({
     logger.info('Logged out');
     storage.remove(storedTokenName);
     browserHistory.push('/login');
+    return Promise.resolve();
   },
 });
 

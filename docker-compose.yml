@@ -1,8 +1,9 @@
 version: "2"
 services:
   boilerplate:
-    build: .
-    dockerfile: Dockerfile
+    build:
+      dockerfile: Dockerfile
+      context: .
     container_name: boilerplate
     environment:
       - NODE_ENV=development
@@ -11,3 +12,4 @@ services:
     ports:
       - "3000:3000"
       - "3001:3001"
+    command: npm run dev

@@ -26,6 +26,6 @@ export function loginFromToken() {
 export function logout() {
   return {
     type: LOGOUT,
-    promise: ({ client }) => Promise.resolve(authService(client).logout()),
+    promise: ({ client }) => authService(client).logout(),
   };
 }
