@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
-import NotFoundPage from '../src/Pages/NotFoundPage.js';
+import NotFoundPage from '../src/pages/NotFoundPage.js';
 
 describe('Test', () => {
   it('NotFound Page', () => {

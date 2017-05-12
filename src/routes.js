@@ -4,11 +4,11 @@ import { Route, IndexRoute } from 'react-router';
 import App from 'containers/App';
 import requireAuthentication from 'containers/AuthenticationProvider';
 import NavPanel from 'containers/NavPanel';
-import HomePage from 'Pages/HomePage';
-import AboutPage from 'Pages/AboutPage.js';
-import PrivatePage from 'Pages/PrivatePage.js';
-import LoginPage from 'Pages/LoginPage';
-import NotFoundPage from 'Pages/NotFoundPage.js';
+import HomePage from 'pages/HomePage';
+import AboutPage from 'pages/AboutPage.js';
+import PrivatePage from 'pages/PrivatePage.js';
+import LoginPage from 'pages/LoginPage';
+import NotFoundPage from 'pages/NotFoundPage.js';
 
 const privateRoute = requireAuthentication([
   {
