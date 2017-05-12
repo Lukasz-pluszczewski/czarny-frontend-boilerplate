@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "engines": {
-    "npm": ">=3"
+    "npm": ">=4"
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
@@ -28,7 +28,7 @@
     "test:coverage": "NODE_PATH=src babel-node ./node_modules/.bin/isparta cover _mocha -- --require ./tools/testSetup.js \"./test/**/*.js\" && open coverage/lcov-report/index.html",
     "test:watch": "npm run test:prebuild -- --watch"
   },
-  "author": "Łukasz",
+  "author": "Brainhub",
   "license": "MIT",
   "dependencies": {
     "express": "^4.15.2"
