@@ -6,9 +6,11 @@ WORKDIR /app
 
 COPY package.json /app
 COPY yarn.lock /app
-COPY /tools /app/tools
 RUN yarn install
 
 COPY . /app
 
 RUN npm run build
+
+EXPOSE 80
+CMD ["npm", "run", "start"]
