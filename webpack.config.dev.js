@@ -14,7 +14,7 @@ export default {
   devtool: 'eval',
   entry: [
     'babel-polyfill',
-    './src/webpack-public-path', // must be first entry to properly set public path
+    path.resolve(__dirname, 'src/webpack-public-path.js'), // must be first entry to properly set public path
     'webpack-hot-middleware/client?reload=true',
     path.resolve(__dirname, 'src/index.js'),
   ],
