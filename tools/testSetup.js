@@ -19,3 +19,5 @@ global.logger.warn = function() {};
 // before our tests run.
 require('babel-register')();
 require('babel-polyfill');
+
+// TODO: add sinon-chai

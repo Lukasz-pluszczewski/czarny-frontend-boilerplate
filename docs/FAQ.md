@@ -80,65 +80,83 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 ```
 
 ### What are the dependencies in package.json used for?
+
 | **Dependency** | **Use** |
 |----------|-------|
-|autoprefixer | Automatically adds vendor prefixes, using data from Can I Use. |
-|connect-history-api-fallback  | Support reloading deep links |
-|object-assign | Polyfill for Object.assign |
-|react|React library |
-|react-dom|React library for DOM rendering |
-|react-redux|Redux library for connecting React components to Redux |
-|react-router|React library for routing |
-|redux|Library for unidirectional data flows |
-|redux-thunk|Middleware for redux that allows actions to be declared as functions |
-|babel-cli|Babel Command line interface |
-|babel-core|Babel Core for transpiling the new JavaScript to old |
-|babel-loader|Adds Babel support to Webpack |
-|babel-plugin-react-display-name| Add displayName to React.createClass calls |
-|babel-plugin-transform-react-constant-elements | Performance optimization: Hoists the creation of elements that are fully static to the top level. reduces calls to React.createElement and the resulting memory allocations. [More info](https://medium.com/doctolib-engineering/improve-react-performance-with-babel-16f1becfaa25#.2wbkg8g4d) |
-|babel-preset-latest|Babel preset for ES2015, ES2016 and ES2017|
-|babel-preset-react-hmre|Hot reloading preset for Babel|
-|babel-preset-react| Add JSX support to Babel |
-|babel-preset-stage-1| Include stage 1 feature support in Babel |
-|browser-sync| Supports synchronized testing on multiple devices and serves local app on public URL |
-|chai|Assertion library for use with Mocha|
-|chalk|Adds color support to terminal |
-|cross-env|Cross-environment friendly way to handle environment variables|
-|css-loader|Add CSS support to Webpack|
-|enzyme|Simplified JavaScript Testing utilities for React|
-|eslint|Lints JavaScript |
-|eslint-loader|Adds ESLint support to Webpack |
-|eslint-plugin-react|Adds additional React-related rules to ESLint|
-|eslint-watch|Wraps ESLint to provide file watch support and enhanced command line output|
-|extract-text-webpack-plugin| Extracts CSS into separate file for production build |
-|file-loader| Adds file loading support to Webpack |
-|html-webpack-plugin|Generates custom index.html for each environment as part of webpack build|
-|mocha| JavaScript testing library |
-|node-sass| Adds SASS support to Webpack |
-|npm-run-all| Run multiple scripts at the same time |
-|postcss-loader| Adds PostCSS support to Webpack |
-|react-addons-test-utils| Adds React TestUtils |
-|rimraf|Delete files |
-|sass-loader| Adds Sass support to Webpack|
-|sinon| Standalone test spies, stubs and mocks for JavaScript |
-|sinon-chai| Extends Chai with assertions for the Sinon.JS mocking framework|
-|style-loader| Add Style support to Webpack |
-|webpack| Bundler with plugin system and integrated development server |
-|webpack-dev-middleware| Used to integrate Webpack with Browser-sync |
-|webpack-hot-middleware| Use to integrate Webpack's hot reloading support with Browser-sync |
-|webpack-md5-hash| Hash bundles, and use the hash for the filename so that the filename only changes when contents change|
-|yargs| Easily parse command-line arguments |
+| express | Serves file on production |
 
-### Where are the files being served from when I run `npm start`?
-Webpack serves your app in memory when you run `npm start`. No physical files are written. However, the web root is /src, so you can reference files under /src in index.html. When the app is built using `npm run build`, physical files are written to /dist and the app is served from /dist.
+
+| **Dev Dependency** | **Use** |
+|----------|-------|
+| autoprefixer | Automatically adds vendor prefixes, using data from Can I Use |
+| babel-cli | Babel Command line interface |
+| babel-core | Babel Core for transpiling the new JavaScript to old |
+| babel-loader | Adds Babel support to Webpack |
+| babel-plugin-react-display-name | Add displayName to React.createClass calls |
+| babel-plugin-transform-decorators-legacy | TODO |
+| babel-plugin-transform-react-constant-elements | Performance optimization: Hoists the creation of elements that are fully static to the top level. reduces calls to React.createElement and the resulting memory allocations. [More info](https://medium.com/doctolib-engineering/improve-react-performance-with-babel-16f1becfaa25#.2wbkg8g4d) |
+| babel-plugin-transform-react-remove-prop-types | Removes propTypes in production version of built application |
+| babel-polyfill | Adds polyfills |
+| babel-preset-latest | Babel preset for ES2015, ES2016 and ES2017 |
+| babel-preset-react | Add JSX support to Babel |
+| babel-preset-react-hmre | Hot reloading preset for Babel |
+| babel-preset-stage-1 | Include stage 1 feature support in Babel |
+| babel-register | TODO
+| browser-sync | Supports synchronized testing on multiple devices and serves local app on public URL |
+| chai | Assertion library for use with Mocha |
+| chai-as-promised | Plugin to chai for easily testing of Promises |
+| chalk | Adds color support to terminal |
+| connect-history-api-fallback | Support reloading deep links |
+| css-loader | Add CSS support to Webpack |
+| cucumber | BDD testing with gherkin syntax |
+| enzyme | Simplified JavaScript Testing utilities for React |
+| eslint | Lints JavaScript |
+| eslint-config-brainhub | Brainhub's set of rules for eslint |
+| eslint-watch | Wraps ESLint to provide file watch support and enhanced command line output |
+| extract-text-webpack-plugin | Extracts CSS into separate file for production build |
+| file-loader | Adds file loading support to Webpack |
+| html-webpack-plugin | Generates custom index.html for each environment as part of webpack build |
+| isparta | TODO |
+| istanbul | TODO |
+| json-loader | Adds json loading support to Webpack |
+| lodash | TODO |
+| mocha | JavaScript testing library |
+| node-sass | Adds SASS support to Webpack |
+| postcss-loader | Adds PostCSS support to Webpack |
+| prop-types | Adds types checker to React |
+| react | React library |
+| react-dom | React library for DOM rendering |
+| react-fa | FontAwesome components for React |
+| react-redux | Redux library for connecting React components to Redux |
+| react-router | React library for routing |
+| react-router-redux | Integration for react-router to works together with redux |
+| react-test-renderer | TODO |
+| redux | Library for unidirectional data flows |
+| redux-immutable-state-invariant | Helper for preventing redux state from mutation |
+| rimraf | Delete files |
+| sass-loader | Adds Sass support to Webpack |
+| sinon | Standalone test spies, stubs and mocks for JavaScript |
+| sinon-chai | Extends Chai with assertions for the Sinon.JS mocking framework |
+| style-loader | Add Style support to Webpack |
+| superagent | Library for making requests |
+| url-loader | TODO |
+| wdio-cucumber-framework | TODO |
+| wdio-spec-reporter | TODO |
+| webdriverio | Library for testing in Selenium |
+| webpack | Bundler with plugin system and integrated development server |
+| webpack-dev-middleware | Used to integrate Webpack with Browser-sync |
+| webpack-hot-middleware | Use to integrate Webpack's hot reloading support with Browser-sync |
+
+### Where are the files being served from when I run `npm run dev`?
+Webpack serves your app in memory when you run `npm run dev`. No physical files are written. However, the web root is /src, so you can reference files under /src in index.html. When the app is built using `npm run build`, physical files are written to /dist and the app is served from /dist.
 
 ### Where is index.html?
 It's generated by webpack using htmlWebpackPlugin. This plugin dynamically generates index.html based on the configuration in webpack.config. It also adds references to the JS and CSS bundles using hash-based filenames to bust cache. Separate bundles for vendor and application code are created and referencing within the generated index.html file so that vendor libraries and app code can be cached separately by the browser. The bundle filenames are based on the file's hash, so the filenames only change when the file contents change. For more information on this, read [Long-term caching of static assets with Webpack](https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95#.4aeatmtfz) and [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin)
 
 ### How is Sass being converted into CSS and landing in the browser?
-Magic! Okay, more specifically, we're handling it differently in dev (`npm start`) vs prod (`npm run build`)
+Magic! Okay, more specifically, we're handling it differently in dev (`npm run dev`) vs prod (`npm run build`)
 
-When you run `npm start`:
+When you run `npm run dev`:
 
  1. The sass-loader compiles Sass into CSS
  2. Webpack bundles the compiled CSS into bundle.js. Sounds odd, but it works!
@@ -157,28 +175,15 @@ For both of the above methods, a separate sourcemap is generated for debugging S
 ### I don't like the magic you just described above. I simply want to use a CSS file.
 No problem. Reference your CSS file in index.html, and add a step to the build process to copy your CSS file over to the same relative location /dist as part of the build step. But be forwarned, you lose style hot reloading with this approach.
 
-### Do I have to use Redux?
-Nope. Redux is useful for applications with more complex data flows. If your app is simple, Redux is overkill. Remove Redux like this:
-
- 1. Run `npm run remove-demo`
- 2. Uninstall Redux related packages: `npm uninstall redux react-redux redux-thunk`
- 3. Create a new empty component in /components.
- 4. Call render on the new top level component you created in step 3 in src/index.js.
-
-### How do I remove React Router?
- 1. Uninstall React Router and routing related packages: `npm uninstall --save react-router`
- 2. Delete the following files: `src/routes.js`
- 3. Remove `import { Link, IndexLink } from 'react-router';` from top of `src/components/App.js`, add a reference to `src/components/FuelSavingsForm.js`, and replace body of (implicit) render with this: `<FuelSavingsPage />`.
-
 ### How do I deploy this?
 `npm run build`. This will build the project for production. It does the following:
 * Minifies all JS
 * Sets NODE_ENV to prod so that React is built in production mode
-* Places the resulting built project files into /dist. (This is the folder you'll expose to the world).
+* Places the resulting built project files into /dist. (you can expose it to the world via `npm start`).
 
 ### How do I debug?
 Since browsers don't currently support ES6, we're using Babel to compile our ES6 down to ES5. This means the code that runs in the browser looks different than what we wrote. But good news, a [sourcemap](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) is generated to enable easy debugging. This means your original JS source will be displayed in your browser's dev console.
-*Note:* When you run `npm start`, no JS is minified. Why? Because minifying slows the build. So JS is only minified when you run the `npm run build` script. See [more on building for production below](https://github.com/coryhouse/react-slingshot#how-do-i-deploy-this).
+*Note:* When you run `npm run dev`, no JS is minified. Why? Because minifying slows the build. So JS is only minified when you run the `npm run build` script. See [more on building for production below](https://github.com/coryhouse/react-slingshot#how-do-i-deploy-this).
 
 Also note that no actual physical files are written to the filesystem during the dev build. **For performance, all files exist in memory when served from the webpack server.**. Physical files are only written when you run `npm run build`.
 
@@ -191,9 +196,6 @@ Also note that no actual physical files are written to the filesystem during the
 ### Why does the build use npm scripts instead of Gulp or Grunt?
 In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n).
 
-### Why does package.json reference the exact version?
-This assures that the build won't break when some new version is released. Unfortunately, many package authors don't properly honor [Semantic Versioning](http://semver.org), so instead, as new versions are released, I'll test them and then introduce them into the starter kit. But yes, this means when you do `npm update` no new dependencies will be pulled down. You'll have to update package.json with the new version manually.
-
 ### How do I handle images?
 Via <a href="https://github.com/webpack/file-loader">Webpack's file loader</a>. Example:
 
@@ -203,9 +205,6 @@ Via <a href="https://github.com/webpack/file-loader">Webpack's file loader</a>. 
 ```
 
 Webpack will then intelligently handle your image for you. For the production build, it will copy the physical file to /dist, give it a unique filename, and insert the appropriate path in your image tag.
-
-### I'm getting an error when running npm install: Failed to locate "CL.exe"
-On Windows, you need to install extra dependencies for browser-sync to build and install successfully. Follow the getting started steps above to assure you have the necessary dependencies on your machine.
 
 ### I can't access the external URL for Browsersync
 To hit the external URL, all devices must be on the same LAN. So this may mean your dev machine needs to be on the same Wifi as the mobile devices you're testing.
