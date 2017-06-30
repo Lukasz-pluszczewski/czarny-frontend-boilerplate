@@ -214,4 +214,3 @@ Install the [Redux devtools extension](https://chrome.google.com/webstore/detail
 
 ### Hot reloading isn't working!
 Hot reloading doesn't always play nicely with stateless functional components at this time. [This is a known limitation that is currently being worked](https://github.com/gaearon/babel-plugin-react-transform/issues/57). To avoid issues with hot reloading for now, use a traditional class-based React component at the top of your component hierarchy.
-
