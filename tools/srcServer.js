@@ -10,14 +10,8 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config.dev';
-import fs from 'fs';
-import path from 'path';
 
 const bundler = webpack(config);
-
-const file = fs.openSync(path.join(__dirname, '../dist/env.js'), 'w');
-fs.writeFileSync(file, `window.env = ${JSON.stringify({ API_HOST: process.env.API_HOST })};`, { encoding: 'utf8' });
-fs.closeSync(file);
 
 // Run Browsersync and use middleware for Hot Module Replacement
 browserSync({
