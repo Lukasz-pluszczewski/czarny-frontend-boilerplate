@@ -1,71 +1,82 @@
-##FAQ
-###Why does this exist?
+## FAQ
+
+### Why does this exist?
+
 This starter kit implements best practices like testing, minification, bundling, and so on. It codifies a long list of decisions that you no longer have to make to get rolling. It saves you from the long, painful process of wiring it all together into an automated dev environment and build process. It's also useful as inspiration for ideas you might want to integrate into your current development environment or build process.
 
-###What do the scripts in package.json do?
-Unfortunately, scripts in package.json can't be commented inline because the JSON spec doesn't support comments, so I'm providing info on what each script in package.json does here.  
+### What do the scripts in `package.json` do?
+
+Unfortunately, scripts in `package.json` can't be commented inline because the JSON spec doesn't support comments, so I'm providing info on what each script in `package.json` does here.
 
 | **Script** | **Description** |
 |----------|-------|
-| prestart | Runs automatically before start. Calls remove-dist script which deletes the dist folder. This helps remind you to run the build script before committing since the dist folder will be deleted if you don't. ;) |
-| start | Runs tests, lints, starts dev webserver, and opens the app in your default browser. |
-| lint:tools | Runs ESLint on build related JS files. (eslint-loader lints src files via webpack when `npm start` is run) |
+| preinstall | Runs automatically before install. Check if there is correct version of nodejs |
+| start-message | Display welcome message |
+| prestart | Runs automatically before start. Calls `start-message` script |
+| start | Runs production server that will serve built application |
+| predev | Runs automaticall before dev. Calls `start-message` and `clean-dist` scripts |
+| dev | Run Webpack compilator with HMR and open browser with BrowserSync |
+| lint | Runs ESLint on build related JS files |
+| lint:fix | Try to fix all errors related to ESLint |
+| lint:watch | Runs ESLint on vuild realated JS files in watch mode |
 | clean-dist | Removes everything from the dist folder. |
 | remove-dist | Deletes the dist folder. |
-| create-dist | Creates the dist folder and the necessary subfolders. |
-| prebuild | Runs automatically before build script (due to naming convention). Cleans dist folder, builds html, and builds sass. |
+| prebuild | Runs automaticall before build. Calls `clean-dist` script |
 | build | Bundles all JavaScript using webpack and writes it to /dist. |
-| start:test | starts server in TEST environment (e.g. for runing cucumber tests)|
-| test | run tests|
-| test:prebuild | configure environment for tests|
-| test:cucumber |  run cucumber tests (needs app run in test environment)|
-| test:coverage | open tests coverage report|
-| test:watch | run tests in watch mode|
-| flow | show flow report|
-| flow:watch | run flow in watch mode|
-| flow:coverage | open flow coverage |
-| flow-typed | install flow-typed typings|
+| test | Runs mocha tests |
+| test:cucumber | Runs cucumber tests (needs app run in test environment) |
+| test:coverage | open tests coverage report |
+| test:watch | run tests in watch mode |
 
 ### Can you explain the folder structure?
 ```
 .
 ├── .babelrc                  # Configures Babel
+├── .dockerignore             # Tells docker which files to ignore
 ├── .editorconfig             # Configures editor rules
 ├── .eslintrc                 # Configures ESLint
 ├── .gitignore                # Tells git which files to ignore
 ├── .istanbul.yml             # Configure istanbul code coverage
 ├── .npmrc                    # Configures npm to save exact by default
-├── README.md                 # This file.
-├── dist                      # Folder where the build script places the built app. Use this in prod.
+├── .nvmrc                    # Configures nvm to use correct version of node
+├── Dockerfile                # Configures development version of docker container
+├── Dockerfile.prod           # Configures production version of docker container
+├── LICENSE                   # License file
+├── README.md                 # Readme
+├── docker-compose-prod.yml   # Configures production version of docker container
+├── docker-compose.yml        # Configures development version of docker container
+├── package-lock.json         # Lock file used in node version 8+
 ├── package.json              # Package configuration. The list of 3rd party libraries and utilities
+├── wdio.conf.js              # Configures webdriver for cucumber tests
+├── webpack.config.dev.js     # Configures webpack for development builds
+└── webpack.config.prod.js    # Configures webpack for production builds
+├── dist                      # Folder where the build script places the built app. Use this in prod.
+├── docs
+│   ├── FAQ.md                # This file
 ├── src                       # Source code
-│   ├── actions               # Flux/Redux actions. List of distinct actions that can occur in the app.  
+│   ├── favicon.ico           # favicon to keep your browser from throwing a 404 during dev. Not actually used in prod build.
+│   ├── index.ejs             # Template for homepage
+│   ├── index.js              # Entry point for your app
+│   ├── routes.js             # Router for React
+│   ├── webpack-public-path.js# Set public path for webpack
+│   ├── actions               # Flux/Redux actions. List of distinct actions that can occur in the app.
 │   ├── components            # React components
 │   ├── constants             # Application constants including constants for Redux
 │   ├── containers            # React components that may interact with Redux and are rendering their children prop
 │   ├── pages                 # Top-level React components that may interact with Redux and are attached to routes
-│   ├── favicon.ico           # favicon to keep your browser from throwing a 404 during dev. Not actually used in prod build.
-│   ├── index.ejs             # Template for homepage
-│   ├── index.js              # Entry point for your app
 │   ├── reducers              # Redux reducers. Your state is altered here based on actions
+│   ├── services              # Services with logic
 │   ├── store                 # Redux store configuration
 │   ├── styles                # CSS Styles, typically written in Sass
-│   └── utils                 # Plain old JS objects (POJOs). Pure logic. No framework specific code here.
+├── test                      # Tests
 ├── tools                     # Node scripts that run build related tools
-│   ├── setup                 # **NEEDS DOCUMENTATION**
-│   │   ├── setup.js          # **NEEDS DOCUMENTATION**
-│   │   ├── setupMessage.js   # **NEEDS DOCUMENTATION**
-│   │   └── setupPrompts.js   # **NEEDS DOCUMENTATION**
 │   ├── build.js              # Runs the production build
 │   ├── chalkConfig.js        # Centralized configuration for chalk (adds color to console statements)
 │   ├── distServer.js         # Starts webserver and opens final built app that's in dist in your default browser
-│   ├── nodeVersionCheck.js   # **NEEDS DOCUMENTATION**
-│   ├── removeDemo.js         # **NEEDS DOCUMENTATION**
+│   ├── nodeVersionCheck.js   # Checks version of node
 │   ├── srcServer.js          # Starts dev webserver with hot reloading and opens your app in your default browser
-│   ├── startMessage.js       # **NEEDS DOCUMENTATION**
+│   ├── startMessage.js       # Display welcome message
 │   └── testSetup.js          # Configures mocha
-├── webpack.config.dev.js     # Configures webpack for development builds
-└── webpack.config.prod.js    # Configures webpack for production builds
 ```
 
 ### What are the dependencies in package.json used for?
@@ -173,8 +184,8 @@ Also note that no actual physical files are written to the filesystem during the
 
 **Tips for debugging via sourcemaps:**
 
- 1. Browsers vary in the way they allow you to view the original source. Chrome automatically shows the original source if a sourcemap is available. Safari, in contrast, will display the minified source and you'll [have to cmd+click on a given line to be taken to the original source](http://stackoverflow.com/questions/19550060/how-do-i-toggle-source-mapping-in-safari-7).  
- 2. Do **not** enable serving files from your filesystem in Chrome dev tools. If you do, Chrome (and perhaps other browsers) may not show you the latest version of your code after you make a source code change. Instead **you must close the source view tab you were using and reopen it to see the updated source code**. It appears Chrome clings to the old sourcemap until you close and reopen the source view tab. To clarify, you don't have to close the actual tab that is displaying the app, just the tab in the console that's displaying the source file that you just changed.  
+ 1. Browsers vary in the way they allow you to view the original source. Chrome automatically shows the original source if a sourcemap is available. Safari, in contrast, will display the minified source and you'll [have to cmd+click on a given line to be taken to the original source](http://stackoverflow.com/questions/19550060/how-do-i-toggle-source-mapping-in-safari-7).
+ 2. Do **not** enable serving files from your filesystem in Chrome dev tools. If you do, Chrome (and perhaps other browsers) may not show you the latest version of your code after you make a source code change. Instead **you must close the source view tab you were using and reopen it to see the updated source code**. It appears Chrome clings to the old sourcemap until you close and reopen the source view tab. To clarify, you don't have to close the actual tab that is displaying the app, just the tab in the console that's displaying the source file that you just changed.
  3. If the latest source isn't displaying the console, force a refresh. Sometimes Chrome seems to hold onto a previous version of the sourcemap which will cause you to see stale code.
 
 ### Why does the build use npm scripts instead of Gulp or Grunt?
@@ -184,7 +195,7 @@ In short, Gulp is an unnecessary abstraction that creates more problems than it 
 This assures that the build won't break when some new version is released. Unfortunately, many package authors don't properly honor [Semantic Versioning](http://semver.org), so instead, as new versions are released, I'll test them and then introduce them into the starter kit. But yes, this means when you do `npm update` no new dependencies will be pulled down. You'll have to update package.json with the new version manually.
 
 ### How do I handle images?
-Via <a href="https://github.com/webpack/file-loader">Webpack's file loader</a>. Example: 
+Via <a href="https://github.com/webpack/file-loader">Webpack's file loader</a>. Example:
 
 ```
 <img src={require('./src/images/myImage.jpg')} />
