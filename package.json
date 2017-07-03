@@ -22,7 +22,9 @@
     "test": "NODE_PATH=src mocha tools/testSetup.js \"./test/**/*.js\"",
     "test:cucumber": "rimraf ./screenshots && NODE_PATH=src wdio wdio.conf.js",
     "test:coverage": "NODE_PATH=src babel-node ./node_modules/.bin/isparta cover _mocha -- --require ./tools/testSetup.js \"./test/**/*.js\" && open coverage/lcov-report/index.html",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "selenium:install": "selenium-standalone install",
+    "selenium": "selenium-standalone start"
   },
   "author": "Brainhub",
   "license": "MIT",
@@ -77,6 +79,7 @@
     "redux-immutable-state-invariant": "^2.0.0",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
+    "selenium-standalone": "^6.5.0",
     "sinon": "^2.1.0",
     "style-loader": "^0.17.0",
     "superagent": "^3.5.2",

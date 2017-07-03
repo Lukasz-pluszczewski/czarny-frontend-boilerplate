@@ -27,6 +27,8 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 | test:cucumber | Runs cucumber tests (needs app run in test environment) |
 | test:coverage | open tests coverage report |
 | test:watch | run tests in watch mode |
+| selenium:install | installs selenium dependencies |
+| selenium | starts selenium server |
 
 ### Can you explain the folder structure?
 ```
@@ -135,6 +137,7 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 | redux-immutable-state-invariant | Helper for preventing redux state from mutation |
 | rimraf | Delete files |
 | sass-loader | Adds Sass support to Webpack |
+| selenium-standalone | Installs and runs selenium server via CLI |
 | sinon | Standalone test spies, stubs and mocks for JavaScript |
 | sinon-chai | Extends Chai with assertions for the Sinon.JS mocking framework |
 | style-loader | Add Style support to Webpack |
