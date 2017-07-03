@@ -20,4 +20,7 @@ global.logger.warn = function() {};
 require('babel-register')();
 require('babel-polyfill');
 
-// TODO: add sinon-chai
+const chai = require('chai');
+const sinonChai = require('sinon-chai');
+
+chai.use(sinonChai);
