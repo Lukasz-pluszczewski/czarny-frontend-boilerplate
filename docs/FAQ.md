@@ -92,16 +92,16 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 | babel-cli | Babel Command line interface |
 | babel-core | Babel Core for transpiling the new JavaScript to old |
 | babel-loader | Adds Babel support to Webpack |
-| babel-plugin-react-display-name | Add displayName to React.createClass calls |
-| babel-plugin-transform-decorators-legacy | TODO |
+| babel-plugin-react-display-name | Adds displayName to React.createClass calls |
+| babel-plugin-transform-decorators-legacy | Adds support for decorators |
 | babel-plugin-transform-react-constant-elements | Performance optimization: Hoists the creation of elements that are fully static to the top level. reduces calls to React.createElement and the resulting memory allocations. [More info](https://medium.com/doctolib-engineering/improve-react-performance-with-babel-16f1becfaa25#.2wbkg8g4d) |
 | babel-plugin-transform-react-remove-prop-types | Removes propTypes in production version of built application |
 | babel-polyfill | Adds polyfills |
 | babel-preset-latest | Babel preset for ES2015, ES2016 and ES2017 |
-| babel-preset-react | Add JSX support to Babel |
+| babel-preset-react | Adds JSX support to Babel |
 | babel-preset-react-hmre | Hot reloading preset for Babel |
 | babel-preset-stage-1 | Include stage 1 feature support in Babel |
-| babel-register | TODO
+| babel-register | Compiles files on the fly |
 | browser-sync | Supports synchronized testing on multiple devices and serves local app on public URL |
 | chai | Assertion library for use with Mocha |
 | chai-as-promised | Plugin to chai for easily testing of Promises |
@@ -116,10 +116,10 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 | extract-text-webpack-plugin | Extracts CSS into separate file for production build |
 | file-loader | Adds file loading support to Webpack |
 | html-webpack-plugin | Generates custom index.html for each environment as part of webpack build |
-| isparta | TODO |
-| istanbul | TODO |
+| isparta | Code coverage tool |
+| istanbul | Code coverage tool |
 | json-loader | Adds json loading support to Webpack |
-| lodash | TODO |
+| lodash | A modern JavaScript utility library |
 | mocha | JavaScript testing library |
 | node-sass | Adds SASS support to Webpack |
 | postcss-loader | Adds PostCSS support to Webpack |
@@ -130,7 +130,7 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 | react-redux | Redux library for connecting React components to Redux |
 | react-router | React library for routing |
 | react-router-redux | Integration for react-router to works together with redux |
-| react-test-renderer | TODO |
+| react-test-renderer | React renderers that can be used for testing purposes |
 | redux | Library for unidirectional data flows |
 | redux-immutable-state-invariant | Helper for preventing redux state from mutation |
 | rimraf | Delete files |
@@ -139,9 +139,9 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 | sinon-chai | Extends Chai with assertions for the Sinon.JS mocking framework |
 | style-loader | Add Style support to Webpack |
 | superagent | Library for making requests |
-| url-loader | TODO |
-| wdio-cucumber-framework | TODO |
-| wdio-spec-reporter | TODO |
+| url-loader | Adds file loading support to Webpack |
+| wdio-cucumber-framework | Adapater for cucumber testing framework |
+| wdio-spec-reporter | Reporter that creates 'spec'-style reports |
 | webdriverio | Library for testing in Selenium |
 | webpack | Bundler with plugin system and integrated development server |
 | webpack-dev-middleware | Used to integrate Webpack with Browser-sync |
