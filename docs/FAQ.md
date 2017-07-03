@@ -135,7 +135,6 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 | react-test-renderer | React renderers that can be used for testing purposes |
 | redux | Library for unidirectional data flows |
 | redux-immutable-state-invariant | Helper for preventing redux state from mutation |
-| rimraf | Delete files |
 | sass-loader | Adds Sass support to Webpack |
 | selenium-standalone | Installs and runs selenium server via CLI |
 | sinon | Standalone test spies, stubs and mocks for JavaScript |
