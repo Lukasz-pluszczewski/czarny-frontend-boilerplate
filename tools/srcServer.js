@@ -29,7 +29,10 @@ browserSync({
           next();
         } else {
           res.setHeader('content-type', 'text/javascript');
-          res.end(`window.env = ${JSON.stringify({ API_HOST: process.env.API_HOST })};`);
+          res.end(`window.env = ${JSON.stringify({ 
+            ENVIRONMENT: process.env.ENVIRONMENT, 
+            API_HOST: process.env.API_HOST, 
+          })};`);
         }
       },
       historyApiFallback(),
