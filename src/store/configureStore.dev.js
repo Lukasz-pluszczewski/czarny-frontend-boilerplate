@@ -4,6 +4,8 @@
 
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+import { routerMiddleware } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 import reduxPromiseMiddleware from './middleware/reduxPromise';
 import rootReducer from '../reducers';
 
@@ -11,6 +13,7 @@ export default function configureStore(initialState) {
   const middlewares = [
     reduxImmutableStateInvariant(),
     reduxPromiseMiddleware,
+    routerMiddleware(browserHistory),
   ];
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
