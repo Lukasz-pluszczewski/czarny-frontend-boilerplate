@@ -13,5 +13,5 @@ export default {
   },
   triggerFunction(func, param) {
     return func(param);
-  }
+  },
 };

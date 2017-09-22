@@ -32,18 +32,7 @@ const ApiClient = {
 
       request.end((err, res) => {
         if (res) {
-          const loggedData = {
-            requestParams: params,
-            requestData: data,
-            requestHeaders: request._header,
-            responseStatus: res.statusCode ? `${res.statusCode} - ${res.statusText}` : 'No status code',
-            responseBody: res.body,
-            response: res,
-            request,
-          };
-
           if (res.ok) {
-            logger.apiSuccess(`${method} request to "${request.url}" succeeded`, loggedData);
             return resolve({
               statusCode: res.statusCode,
               title: res.statusText,
@@ -51,10 +40,6 @@ const ApiClient = {
               res,
             });
           }
-          logger.apiError(
-            `${method} request to "${request.url}" failed with code ${loggedData.responseStatus}`,
-            loggedData
-          );
           return reject({
             statusCode: res.statusCode,
             title: res.statusText,
@@ -63,7 +48,6 @@ const ApiClient = {
             res,
           });
         }
-        logger.apiError(`${method} request to "${request.url}" failed with no response`);
         return reject({
           statusCode: 503,
           title: 'Service unavailable',
