@@ -1,12 +1,7 @@
-import chai, { expect } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+import { expect } from 'chai';
 import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
 
 import exampleService from 'services/exampleService';
-
-chai.use(chaiAsPromised);
-chai.use(sinonChai);
 
 describe('exampleService', () => {
   it('should return true', () => {
