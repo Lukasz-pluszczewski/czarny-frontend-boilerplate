@@ -6,7 +6,7 @@ const file = fs.openSync(path.join(__dirname, '../dist/env.js'), 'w');
 fs.writeFileSync(
   file,
   `window.env = ${JSON.stringify(
-    { 
+    {
       API_HOST: process.env.API_HOST,
       ENVIRONMENT: process.env.ENVIRONMENT,
     }

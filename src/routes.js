@@ -1,13 +1,22 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
+
+import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter } from 'react-router-redux';
+
+const history = createHistory();
 
 import App from 'containers/App';
 import HomePage from 'pages/HomePage';
 import NotFoundPage from 'pages/NotFoundPage.js';
 
 export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={HomePage}/>
-    <Route path="*" component={NotFoundPage}/>
-  </Route>
+  <ConnectedRouter history={history}>
+    <App>
+      <Switch>
+        <Route exact path="/" component={HomePage}/>
+        <Route path="*" component={NotFoundPage}/>
+      </Switch>
+    </App>
+  </ConnectedRouter>
 );

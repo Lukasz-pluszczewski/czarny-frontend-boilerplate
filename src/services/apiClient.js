@@ -13,7 +13,7 @@ const ApiClient = {
 
       request.timeout(5000);
 
-      if (storage.load(config.authentication.header)) {
+      if (config.authentication.header && storage.load(config.authentication.header)) {
         request.set(config.authentication.header, storage.load(config.authentication.header));
       }
 

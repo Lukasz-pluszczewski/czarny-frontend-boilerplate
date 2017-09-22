@@ -6,7 +6,7 @@ This starter kit implements best practices like testing, minification, bundling,
 
 ### What do the scripts in `package.json` do?
 
-Unfortunately, scripts in `package.json` can't be commented inline because the JSON spec doesn't support comments, so I'm providing info on what each script in `package.json` does here.
+Unfortunately, scripts in `package.json` can't be commented inline because the JSON spec doesn't support comments, so I'm providing info on what each script in `package.json` does here. Scripts with asterisk * are intended to be called directly be the developer
 
 | **Script** | **Description** |
 |----------|-------|
@@ -14,14 +14,14 @@ Unfortunately, scripts in `package.json` can't be commented inline because the J
 | start-message | Display welcome message |
 | prestart | Runs automatically before start. Calls `start-message` script |
 | start | Runs production server that will serve built application |
-| predev | Runs automaticall before dev. Calls `start-message` and `clean-dist` scripts |
+| predev | Runs automatically before dev. Calls `start-message` and `clean-dist` scripts |
 | dev | Run Webpack compilator with HMR and open browser with BrowserSync |
 | lint | Runs ESLint on build related JS files |
 | lint:fix | Try to fix all errors related to ESLint |
-| lint:watch | Runs ESLint on vuild realated JS files in watch mode |
+| lint:watch | Runs ESLint on build related JS files in watch mode |
 | clean-dist | Removes everything from the dist folder. |
 | remove-dist | Deletes the dist folder. |
-| prebuild | Runs automaticall before build. Calls `clean-dist` script |
+| prebuild | Runs automatically before build. Calls `clean-dist` script |
 | build | Bundles all JavaScript using webpack and writes it to /dist. |
 | test | Runs mocha tests |
 | test:cucumber | Runs cucumber tests (needs app run in test environment) |
@@ -199,11 +199,10 @@ Also note that no actual physical files are written to the filesystem during the
 In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n).
 
 ### How do I handle images?
-Via <a href="https://github.com/webpack/file-loader">Webpack's file loader</a>. Example:
+Via [Webpack's file loader](https://github.com/webpack/file-loader). Example:
 
 ```
 <img src={require('./src/images/myImage.jpg')} />
-
 ```
 
 Webpack will then intelligently handle your image for you. For the production build, it will copy the physical file to /dist, give it a unique filename, and insert the appropriate path in your image tag.

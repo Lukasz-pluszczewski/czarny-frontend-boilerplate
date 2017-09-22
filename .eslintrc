@@ -7,7 +7,7 @@
 
   },
   "globals": {
-    "logger": true
+
   },
   "settings": {
     "import/resolve": {

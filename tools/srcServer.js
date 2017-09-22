@@ -29,9 +29,9 @@ browserSync({
           next();
         } else {
           res.setHeader('content-type', 'text/javascript');
-          res.end(`window.env = ${JSON.stringify({ 
-            ENVIRONMENT: process.env.ENVIRONMENT, 
-            API_HOST: process.env.API_HOST, 
+          res.end(`window.env = ${JSON.stringify({
+            ENVIRONMENT: process.env.ENVIRONMENT,
+            API_HOST: process.env.API_HOST,
           })};`);
         }
       },
@@ -42,7 +42,7 @@ browserSync({
         publicPath: config.output.publicPath,
 
         // These settings suppress noisy webpack output so only errors are displayed to the console.
-        noInfo: false,
+        noInfo: true,
         quiet: false,
         stats: {
           assets: false,
