@@ -4,19 +4,25 @@
 
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import reduxPromiseMiddleware from './middleware/reduxPromise';
+import { routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
+
+import reduxBetterPromise from 'redux-better-promise';
+
+
 import rootReducer from '../reducers';
 
 export default function configureStore(initialState) {
   const middlewares = [
     reduxImmutableStateInvariant(),
-    reduxPromiseMiddleware,
+    reduxBetterPromise(),
+    routerMiddleware(createHistory()),
   ];
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
   const store = createStore(rootReducer, initialState, composeEnhancers(
     applyMiddleware(...middlewares)
-    )
+  )
   );
 
   if (module.hot) {

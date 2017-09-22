@@ -2,22 +2,16 @@
 // which supports hot reloading and synchronized testing.
 
 // Require Browsersync along with webpack and middleware for it
-import browserSync from 'browser-sync';
+const browserSync = require('browser-sync');
 // Required for react-router browserHistory
 // see https://github.com/BrowserSync/browser-sync/issues/204#issuecomment-102623643
-import historyApiFallback from 'connect-history-api-fallback';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from '../webpack.config.dev';
-import fs from 'fs';
-import path from 'path';
+const historyApiFallback = require('connect-history-api-fallback');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('../webpack.config.dev');
 
 const bundler = webpack(config);
-
-const file = fs.openSync(path.join(__dirname, '../dist/env.js'), 'w');
-fs.writeFileSync(file, `window.env = ${JSON.stringify({ API_HOST: process.env.API_HOST })};`, { encoding: 'utf8' });
-fs.closeSync(file);
 
 // Run Browsersync and use middleware for Hot Module Replacement
 browserSync({
@@ -25,6 +19,7 @@ browserSync({
   ui: {
     port: 3001,
   },
+  ghostMode: false,
   server: {
     baseDir: 'src',
 
@@ -34,7 +29,10 @@ browserSync({
           next();
         } else {
           res.setHeader('content-type', 'text/javascript');
-          res.end(`window.env = ${JSON.stringify({ API_HOST: process.env.API_HOST })};`);
+          res.end(`window.env = ${JSON.stringify({
+            ENVIRONMENT: process.env.ENVIRONMENT,
+            API_HOST: process.env.API_HOST,
+          })};`);
         }
       },
       historyApiFallback(),
@@ -44,7 +42,7 @@ browserSync({
         publicPath: config.output.publicPath,
 
         // These settings suppress noisy webpack output so only errors are displayed to the console.
-        noInfo: false,
+        noInfo: true,
         quiet: false,
         stats: {
           assets: false,
