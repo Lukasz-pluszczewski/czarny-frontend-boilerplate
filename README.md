@@ -8,7 +8,7 @@
 
 ## Make it your own
 1. **remove .git** `rm -rf .git`
-2. **rename the app** change all 'frontend-boilerplate' to name of your-app and all 'Brainhub' to you (rememebr about licence file) ;)
+2. **rename the app** change all 'frontend-boilerplate' to name of your-app and all 'Brainhub' to you (remember about licence file) ;)
 3. **push**
 ```
 git init
