@@ -1,7 +1,7 @@
 # Brainhub boilerplate!
 
 ## Get Started
-1. **Clone the project**. `git clone git@bitbucket.org:tapchan/frontend-boilerplate.git your-app`.
+1. **Clone the project**. `git clone ssh://git@git.brainhub.pl:2222/brainhub/frontend-boilerplate.git your-app`.
 2. **Change dir** `cd your-app`
 3. **Install dependencies**. `npm i`
 4. **Run the app**. `npm run dev`
@@ -13,7 +13,7 @@
 ```
 git init
 git commit -m "init"
-git remote add origin you-repo-address
+git remote add origin your-repo-address
 git push -u origin master
 ```
 
