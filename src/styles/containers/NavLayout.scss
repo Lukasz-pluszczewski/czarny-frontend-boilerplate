@@ -1,0 +1,37 @@
+@import '../variables';
+
+.NavLayout__brainhubLogoContainer {
+  display: block;
+  .NavLayout__brainhubLogo {
+    display: block;
+    margin: 0 auto;
+    width: 260px;
+  }
+}
+
+.NavLayout__status {
+  .NavLayout__statusIcon {
+    margin-right: $smallSpacing;
+    color: green;
+    &.NavLayout__statusIcon--disconnected {
+      color: red;
+    }
+  }
+}
+
+@include mobile {
+  .NavLayout__brainhubLogoContainer {
+    .NavLayout__brainhubLogo {
+      width: 160px;
+    }
+  }
+  .NavLayout__title {
+    display: none;
+  }
+
+  .NavLayout__status {
+    .NavLayout__statusText {
+      display: none;
+    }
+  }
+}

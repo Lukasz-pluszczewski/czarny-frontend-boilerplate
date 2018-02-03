@@ -1,0 +1,100 @@
+// typography
+$baseFontSize: 18px;
+
+// breakpoints
+$mobileRes: 768px;
+$tabletRes: 992px;
+$monitorRes: 1200px;
+
+$mobile: (max-width: $mobileRes - 1px);
+$tablet: (min-width: $mobileRes) and (max-width: $tabletRes - 1px);
+$smallMonitor: (min-width: $tabletRes) and (max-width: $monitorRes - 1px);
+$largeMonitor: (min-width: $monitorRes);
+
+$mobileDrawerBreakPoint: $monitorRes;
+$mobileDrawerQuery: (max-width: $mobileDrawerBreakPoint);
+
+@mixin mobile {
+  @media #{$mobile} {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media #{$tablet} {
+    @content;
+  }
+}
+
+@mixin smallMonitor {
+  @media #{$smallMonitor} {
+    @content;
+  }
+}
+
+@mixin largeMonitor {
+  @media #{$largeMonitor} {
+    @content;
+  }
+}
+
+@mixin mobileDrawerMedia {
+  @media #{$mobileDrawerQuery} {
+    @content;
+  }
+}
+
+$tinySpacing: .2em;
+$smallSpacing: .5em;
+$standardSpacing: 1em;
+$largeSpacing: 2em;
+
+// colors
+$darkGrey: #525252;
+$grey: #7f7f7f;
+$lightGrey: #cacaca;
+$white: #ffffff;
+$black: #000000;
+
+// default text colors
+$background: $white;
+$defaultText: $black;
+$lightText: $lightGrey;
+$disabledText: $grey;
+
+// negative text colors (reversed)
+$reverseBackground: $black;
+$reverseText: $white;
+$reverseLightText: $grey;
+$reverseDisabledText: $grey;
+
+// main colors
+$primary: #2c446a;
+$primaryDark: #08122c;
+$primaryDisabled: rgba(36, 60, 92, 0.62);
+
+$secondary: #55d7ff;
+$secondaryDark: #1da3cc;
+$secondaryDisabled: rgba(61, 150, 181, 0.49);
+
+$accent: #944eff;
+$accentDark: #492780;
+$accentDisabled: rgba(77, 45, 144, 0.44);
+
+$errorColor: #db2828;
+$errorColorDark: #b32525;
+
+
+// layout params
+$topbarShadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.2);
+@function inputShadow($color) {
+  @return 0 0 5px $color;
+}
+@function inputFocusShadow($color) {
+  @return 0 0 10px 2px $color;
+}
+
+$faded-input-text-color: $grey;
+
+// layout
+$sidebarWidth: 13em;

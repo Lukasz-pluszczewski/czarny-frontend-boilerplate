@@ -4,7 +4,7 @@
     "brainhub"
   ],
   "rules": {
-
+    "no-invalid-this": 0
   },
   "globals": {
 

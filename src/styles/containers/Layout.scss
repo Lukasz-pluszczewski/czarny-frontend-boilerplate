@@ -1,0 +1,147 @@
+@import '../variables';
+
+.Layout__container {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100vw;
+  .Layout__topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+    min-height: 3em;
+    padding: $standardSpacing;
+    background-color: $primary;
+    box-shadow: $topbarShadow;
+    color: $white;
+    .Layout__topbarLeft {
+      display: flex;
+      align-items: center;
+    }
+    .Layout__topbarRight {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .Layout__bottom {
+    display: flex;
+    max-width: 100%;
+    flex-grow: 1;
+    .Sidebar__container {
+      display: flex;
+      flex-direction: column;
+      background-color: $primary;
+      transform: translateX(0);
+      flex: 0 0 13em;
+      .Sidebar__header {
+        display: flex;
+        justify-content: center;
+        padding: $standardSpacing;
+        color: $lightText;
+        opacity: .5;
+        text-transform: uppercase;
+      }
+      .Sidebar__links {
+        display: flex;
+        flex-direction: column;
+        .SidebarButton__container {
+          display: flex;
+          position: relative;
+          padding: $smallSpacing $largeSpacing;
+          text-decoration: none;
+          .SidebarButton__icon {
+            margin-right: $smallSpacing;
+            color: $lightText;
+            width: 20px;
+          }
+          .SidebarButton__text {
+            color: $lightText;
+          }
+          &.SidebarButton--active, &:hover {
+            background-color: $primaryDark;
+            &:after {
+              content: '';
+              position: absolute;
+              right: 0;
+              top: 0;
+              bottom: 0;
+              margin: $smallSpacing 0;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 10px 12px 10px 0;
+              border-color: transparent $accent transparent transparent;
+            }
+          }
+        }
+        .Sidebar__separator {
+          padding: $smallSpacing;
+        }
+      }
+    }
+    .Layout__content {
+      display: flex;
+      padding: $smallSpacing $standardSpacing 5em;
+      background-color: $background;
+      width: calc(100vw - #{$sidebarWidth});
+      overflow-x: auto;
+      &.Layout__content--noSidebar {
+        width: 100vw;
+      }
+    }
+  }
+  .Layout__drawerToggle {
+    cursor: pointer;
+    display: none;
+    margin-right: 1em;
+  }
+  .Layout__overlay {
+    display: none;
+    opacity: 0.5;
+    background-color: dimgrey;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  @include mobileDrawerMedia {
+    .Layout__topbar {
+      .Layout__drawerToggle {
+        display: block;
+      }
+    }
+    .Layout__bottom {
+      .Sidebar__container {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 10;
+        transform: translateX(-100%);
+        will-change: transform;
+        transition-duration: .2s;
+        transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+        transition-property: transform, -webkit-transform;
+      }
+      .Layout__content {
+        width: 100vw;
+      }
+    }
+    &.visible {
+      .Layout__bottom {
+        .Sidebar__container {
+          transform: translateX(0);
+        }
+      }
+      .Layout__content, .Layout__topbar {
+        .Layout__overlay {
+          display: block;
+        }
+      }
+    }
+  }
+}

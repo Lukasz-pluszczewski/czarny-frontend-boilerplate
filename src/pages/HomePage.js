@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 
+import NavLayout from 'containers/NavLayout';
+
+const text = `██████╗███████╗ █████╗ ██████╗ ███╗   ██╗██╗   ██╗
+██╔════╝╚══███╔╝██╔══██╗██╔══██╗████╗  ██║╚██╗ ██╔╝
+██║       ███╔╝ ███████║██████╔╝██╔██╗ ██║ ╚████╔╝
+██║      ███╔╝  ██╔══██║██╔══██╗██║╚██╗██║  ╚██╔╝
+╚██████╗███████╗██║  ██║██║  ██║██║ ╚████║   ██║
+╚═════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   
+                                                   
+`;
+
 export default class HomePage extends Component {
   render() {
     return (
-      <h1>Brainhub boilerplate</h1>
+      <NavLayout>
+        <pre>{text}</pre>
+      </NavLayout>
     );
   }
 }
