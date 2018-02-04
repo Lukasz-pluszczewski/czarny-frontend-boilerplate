@@ -41,9 +41,7 @@ const componentGenerator = {
       type: 'confirm',
       name: 'overwrite',
       message: ({ path }) => `${path} file already exists. Overwrite?`,
-      when: ({ path }) => {
-        return fileSystem.fileExists('src', path);
-      },
+      when: ({ path }) => fileSystem.fileExists('src', path),
     },
   ],
   actions({ type, name, path, overwrite, props }) {

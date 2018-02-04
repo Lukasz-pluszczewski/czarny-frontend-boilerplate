@@ -4,19 +4,19 @@ const actionsFactory = plop => ({
   modify: {
     addAtTheEnd: ({ path, text, addLineFeed = true }) => ({
       type: 'modify',
-      path: path,
+      path,
       template: `$1${addLineFeed ? '\n' : ''}${text}`,
       pattern: /(^[\s\S]*$)/,
     }),
     addAtTheBeginning: ({ path, text, addLineFeed = true }) => ({
       type: 'modify',
-      path: path,
+      path,
       template: `${text}${addLineFeed ? '\n' : ''}$1`,
       pattern: /(^[\s\S]*$)/,
     }),
     addAfter: ({ path, search, text, addLineFeed = true, customGroup = '1' }) => ({
       type: 'modify',
-      path: path,
+      path,
       template: `$${customGroup}${addLineFeed ? '\n' : ''}${text}`,
       pattern: new RegExp(search),
     }),

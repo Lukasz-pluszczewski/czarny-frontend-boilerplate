@@ -1,6 +1,4 @@
-const packageJsonChangeSetting = name => {
-  return new RegExp(`("${name}": ")[\\w ]*(")`);
-};
+const packageJsonChangeSetting = name => new RegExp(`("${name}": ")[\\w ]*(")`);
 
 const route = /({},\n)/g;
 
