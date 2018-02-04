@@ -24,7 +24,8 @@
     "test:coverage": "NODE_PATH=src babel-node ./node_modules/.bin/isparta cover _mocha -- --require ./tools/testSetup.js \"./test/**/*.js\" && open coverage/lcov-report/index.html",
     "test:watch": "npm run test -- --watch",
     "selenium:install": "selenium-standalone install",
-    "selenium": "selenium-standalone start"
+    "selenium": "selenium-standalone start",
+    "generate": "plop"
   },
   "author": "Łukasz Pluszczewski",
   "license": "MIT",
@@ -63,6 +64,8 @@
     "file-loader": "^1.1.5",
     "history": "^4.7.2",
     "html-webpack-plugin": "^2.29.0",
+    "inquirer-recursive": "0.0.5",
+    "inquirer-select-line": "^1.1.1",
     "isparta": "^4.0.0",
     "istanbul": "^0.4.5",
     "json-loader": "^0.5.4",
@@ -71,6 +74,7 @@
     "mocha": "^4.0.1",
     "node-sass": "^4.6.1",
     "perfect-immutable": "^1.5.0",
+    "plop": "^1.9.1",
     "postcss-loader": "^2.0.8",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
