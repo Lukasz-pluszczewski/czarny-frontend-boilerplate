@@ -2,7 +2,7 @@
 > Boilerplate using webpack, babel, react-router 4, mocha-chai-sinon for tests, and additionally redux-better-promise and redux-breeze 
 
 ## Get Started
-1. **Clone the project**. `git clone [repo] your-app`.
+1. **Clone the project**. `git clone https://github.com/Lukasz-pluszczewski/czarny-frontend-boilerplate your-app`.
 2. **Change dir** `cd your-app`
 3. **Install dependencies**. `npm i`
 4. **Run the app**. `npm run dev`
