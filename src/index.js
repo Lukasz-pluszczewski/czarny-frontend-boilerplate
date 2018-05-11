@@ -14,6 +14,7 @@ import configureStore from './store/configureStore';
 
 import './favicon.ico';
 import './styles/styles.scss';
+import '../tools/semantic/dist/semantic.css';
 
 const store = configureStore();
 

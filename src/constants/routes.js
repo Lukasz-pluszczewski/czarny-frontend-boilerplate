@@ -1,9 +1,10 @@
 import HomePage from 'pages/HomePage';
-import ComponentsPage from 'pages/ComponentsPage';
+import ExamplePage from 'pages/ExamplePage';
 import NotFoundPage from 'pages/NotFoundPage.js';
 
 export default [
   {
+    id: 'home',
     path: '/',
     component: HomePage,
     exact: true,
@@ -13,10 +14,11 @@ export default [
   },
   {},
   {
-    path: '/components',
-    component: ComponentsPage,
+    id: 'example',
+    path: '/example',
+    component: ExamplePage,
     exact: true,
-    name: 'components',
+    name: 'example',
     icon: 'th-large',
   },
   {
